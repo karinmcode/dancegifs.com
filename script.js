@@ -53,7 +53,7 @@ function dispData(){
     .then(data => {
       console.log(data); // Process and display your data here
     })
-    .catch(error => console.error('Error K:', error));
+    .catch(error => console.error('Error Code Karin:', error));
 
 }
 
