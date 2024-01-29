@@ -48,7 +48,7 @@ function updateGallery(filteredData) {
 
 
 function dispData(){
-  fetch('https://script.google.com/macros/s/AKfycbxI2y5PAFn4SwiwsXRUMewDd9ewERubWRh9LgZJCMsHp7gmiS8KyeXroF1t3LVhP1ZF/exec')
+  fetch('https://script.google.com/macros/s/AKfycbzf5xdyBb_u5IxAxuxXJqRdjLZMAZwtCd5QdgKomRI/dev')
     .then(response => response.json())
     .then(data => {
       console.log(data); // Process and display your data here
@@ -58,7 +58,7 @@ function dispData(){
 }
 
 function getData(){
-  fetch('https://script.google.com/macros/s/AKfycbxI2y5PAFn4SwiwsXRUMewDd9ewERubWRh9LgZJCMsHp7gmiS8KyeXroF1t3LVhP1ZF/exec')
+  fetch('https://script.google.com/macros/s/AKfycbzf5xdyBb_u5IxAxuxXJqRdjLZMAZwtCd5QdgKomRI/dev')
     .then(response => response.json())
     .then(data => {
       console.log(data); // Process and display your data here
