@@ -97,7 +97,7 @@ function updateGallery(filteredData) {
       // Create link for creator
       const creatorLink = document.createElement('a');
       creatorLink.href = item.creatorUrl; // Set link URL
-      creatorLink.textContent = 'by ${item.creator}'; // Set link text
+      creatorLink.textContent = 'by '+item.creator; // Set link text
       creatorLink.target = '_blank'; // Open in a new tab
       info.appendChild(creatorLink);
       info.appendChild(document.createTextNode('   ')); // Add space
