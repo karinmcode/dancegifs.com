@@ -26,23 +26,26 @@ title {
 
 #gallery {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
     gap: 10px;
     margin-top: 20px;
-    justify-content: center; /* Center the gallery items */
 }
 
 #gallery .gallery-item {
+    width: 100%; /* Full width of the gallery */
+    max-width: 600px; /* Maximum width of each item */
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 5px;
-    text-align: center; /* Center text inside each gallery item */
-    margin-bottom: 20px; /* Space between gallery items */
+    text-align: center; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
 }
+
 
 #gallery img {
     max-width: 100%; /* Adjust to the width of the gallery item */
-    max-height: 150px; /* Set a max height for images */
+    max-height: auto; /* Set a max height for images */
     border-radius: 4px; /* Rounded corners for images */
 }
 
