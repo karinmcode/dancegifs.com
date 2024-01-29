@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance Step Gallery</title>
+</head>
+<body>
+    <div class="titles">
+        <h1>DANCE STEP GALLERY</h1>
+    </div>
+    <div class="filter">
+        <label for="stepName">Step Name</label>
+        <input type="text" id="stepName" placeholder="Enter Step Name">
+
+        <label for="style">Style</label>
+        <select id="style">
+            <option value="">Select Style</option>
+            <!-- Style options will be populated here -->
+        </select>
+
+        <label for="country">Country</label>
+        <select id="country">
+            <option value="">Select Country</option>
+            <!-- Country options will be populated dynamically -->
+        </select>
+
+        <button onclick="populateCountryOptions()">Apply Filters</button>
+    </div>
+
+    <div id="gallery">
+        <!-- GIFs will be displayed here -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
