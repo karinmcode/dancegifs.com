@@ -224,6 +224,18 @@ function transformGoogleDriveURL(url) {
 //const transformedUrl = transformGoogleDriveURL(originalUrl);
 //console.log(transformedUrl);
 
+function resetFilters() {
+  document.getElementById('stepName').value = '';
+  document.getElementById('style').selectedIndex = 0;
+  document.getElementById('country').selectedIndex = 0;
+  document.getElementById('creator').selectedIndex = 0;
+  document.getElementById('sortBy').selectedIndex = 0;
+
+  // Optionally, re-apply filters to update the gallery
+  applyFilters();
+}
+
+
 
 // Call this function when the page loads
 populateMenuOptions();
