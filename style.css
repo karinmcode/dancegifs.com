@@ -28,6 +28,8 @@ title {
 .filter-buttons {
     display: flex;
     gap: 10px; /* Space between buttons */
+    margin-top: 5px; /* Add margin for spacing */
+    margin-right: 5px; /* Space between buttons */
 }
 
 
@@ -36,13 +38,6 @@ title {
 .filter input {
     margin-right: 5px;
     margin-bottom: 10px; /* Add bottom margin for wrapping */
-}
-
-
-/* Align 'Apply' and 'Reset' Buttons on One Line */
-.filter button {
-    margin-top: 5px; /* Add margin for spacing */
-    margin-right: 5px; /* Space between buttons */
 }
 
 #gallery {
