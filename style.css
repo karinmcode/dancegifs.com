@@ -75,7 +75,7 @@ title {
 
 #gallery img {
     max-width: 100%; /* Adjust to the width of the gallery item */
-    max-height: auto; /* Set a max height for images */
+    max-height: 100%; /* Set a max height for images */
     border-radius: 4px; /* Rounded corners for images */
 }
 
