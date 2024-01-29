@@ -1,14 +1,21 @@
 body {
-    font-family: Calibri, Helvetica;
+    font-family: Calibri, Helvetica, sans-serif; /* Fallback to Helvetica and sans-serif if Calibri is not available */
     text-align: center; /* Center align text */
     margin: 0;
     padding: 0;
 }
 
 title {
-    font-family: Calibri;
+    font-family: Calibri, Helvetica, sans-serif; /* Fallback to Helvetica and sans-serif if Calibri is not available */
     text-align: center; /* Center align text */
 }
+
+.database {
+    font-family: Calibri, Helvetica, sans-serif; /* Fallback to Helvetica and sans-serif if Calibri is not available */
+    text-align: center; /* Center align text */
+    font-style: italic; /* Make text italic */
+}
+
 
 .filter {
     margin-bottom: 20px;
@@ -23,6 +30,9 @@ title {
     margin-right: 10px;
     margin-bottom: 10px; /* Add bottom margin for wrapping */
 }
+
+
+
 
 #gallery {
     display: flex;

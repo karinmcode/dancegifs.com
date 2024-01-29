@@ -1,10 +1,12 @@
-const apiUrl = 'https://script.google.com/macros/s/AKfycbyGdVDGESjHgCsZ552KY8q_3W37mU0R3ybAq28Veyi6kN4G6G_C_izL60jcH-kVfkG6/exec';
+const apiUrl = 'https://script.google.com/macros/s/AKfycbwObicg-mHFeUx9-eqL7ZpfqDMWIUzKNWaJW-Md_XdrfdzQ-FRxX5CGDEkbLFS7Hl9C/exec';
 
 async function applyFilters() {
   // Get the filter values
-  const stepName = document.getElementById('stepName').value;
+  const stepName = document.getElementById('stepName').value.toLowerCase();
   const style = document.getElementById('style').value;
   const country = document.getElementById('country').value;
+  const creator = document.getElementById('creator').value;
+
   // Add other filters as needed
 
   try {
@@ -13,8 +15,9 @@ async function applyFilters() {
 
     // Filter the data based on the selected filter values
     const filteredData = data.filter(item => {
-        return (stepName === '' || item.step === stepName) &&
+        return (stepName === '' || item.step.toLowerCase() === stepName) &&
                (style === '' || item.style === style) &&
+               (creator === '' || item.creator === creator) &&
                (country === '' || item.country === country);
         // Include additional filters as needed
     });
@@ -93,8 +96,8 @@ function updateGallery(filteredData) {
     if (item.creator) {
       // Create link for creator
       const creatorLink = document.createElement('a');
-      creatorLink.href = item.creator; // Set link URL
-      creatorLink.textContent = 'creator'; // Set link text
+      creatorLink.href = item.creatorUrl; // Set link URL
+      creatorLink.textContent = item.creator; // Set link text
       creatorLink.target = '_blank'; // Open in a new tab
       info.appendChild(creatorLink);
       info.appendChild(document.createTextNode('   ')); // Add space
@@ -162,6 +165,19 @@ async function populateMenuOptions() {
         const option = document.createElement('option');
         option.value = option.textContent = style;
         styleSelect.appendChild(option);
+    });
+
+    // Extract and sort unique creators
+    const creators = data.map(item => item.creator)
+                       .filter((value, index, self) => value && self.indexOf(value) === index)
+                       .sort();
+
+    // Populate the 'creator' dropdown
+    const creatorSelect = document.getElementById('creator');
+    creators.forEach(creator => {
+        const option = document.createElement('option');
+        option.value = option.textContent = creator;
+        creatorSelect.appendChild(option);
     });
 
   } catch (error) {

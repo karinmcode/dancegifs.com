@@ -26,6 +26,24 @@
             <!-- Country options will be populated dynamically -->
         </select>
 
+        <label for="creator">Country</label>
+        <select id="creator">
+            <option value="">Select Creator</option>
+            <!-- Creator options will be populated dynamically -->
+        </select>
+
+        <!-- Sort By dropdown menu -->
+        <label for="sortBy">Sort By</label>
+        <select id="sortBy">
+            <option value="">Select Sorting</option>
+            <option value="stepName">Step Name</option>
+            <option value="style">Style</option>
+            <option value="country">Country</option>
+            <option value="hasGif">Gif</option>
+            <option value="creator">Creator</option>
+            <!-- Add more sorting options if needed -->
+        </select>
+
         <button onclick="applyFilters()">Apply Filters</button>
     </div>
     <div id="database">
