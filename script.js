@@ -59,7 +59,7 @@ function updateGallery(filteredData) {
 
 
 function dispData(){
-  fetch('https://script.google.com/macros/s/AKfycbwV3kqF5QBNfUR809OzI0DnUN_dj__t4pW1-zXbuMBVSf_Y0gjYeSX7iVKK9n_uyPg/exec')
+  fetch('https://script.google.com/macros/s/AKfycbx2iJe-fNzy-e3jc0cdUeUnjYLW-kBPZhmf40nGlyBTia3oYtQ9fms2XZAPfJgAhLrs/exec')
     .then(response => response.json())
     .then(data => {
       console.log(data); // Process and display your data here
@@ -70,7 +70,7 @@ function dispData(){
 
 
 function getData(){
-  return fetch('https://script.google.com/macros/s/AKfycbwV3kqF5QBNfUR809OzI0DnUN_dj__t4pW1-zXbuMBVSf_Y0gjYeSX7iVKK9n_uyPg/exec')
+  return fetch('https://script.google.com/macros/s/AKfycbx2iJe-fNzy-e3jc0cdUeUnjYLW-kBPZhmf40nGlyBTia3oYtQ9fms2XZAPfJgAhLrs/exec')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
