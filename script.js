@@ -1,4 +1,4 @@
-const apiUrl = 'https://script.google.com/macros/s/AKfycbwObicg-mHFeUx9-eqL7ZpfqDMWIUzKNWaJW-Md_XdrfdzQ-FRxX5CGDEkbLFS7Hl9C/exec';
+const apiUrl = 'https://script.google.com/macros/s/AKfycbzUYfN4umDjrmZCF-LwK8ogORSe1x321-HKJ7WO72MBw2vKiQ1vBWOlge3sO6BjbWiY/exec';
 
 async function applyFilters() {
   // Get the filter values
@@ -102,6 +102,27 @@ function updateGallery(filteredData) {
       info.appendChild(creatorLink);
       info.appendChild(document.createTextNode('   ')); // Add space
     }
+
+    // Check if videos value is not empty
+    if (item.videos) {
+      // Split the videos string into an array of URLs
+      const videoUrls = item.videos.split(';');
+      
+      // Iterate over each video URL
+      videoUrls.forEach((url, index) => {
+          if (url.trim()) { // Check if the URL is not just whitespace
+              // Create link for each video
+              const videoLink = document.createElement('a');
+              videoLink.href = url.trim(); // Set link URL, trimming any extra whitespace
+              videoLink.textContent = `vid ${index + 1}`; // Set link text to "vid 1", "vid 2", etc.
+              videoLink.target = '_blank'; // Open in a new tab
+              info.appendChild(videoLink);
+              info.appendChild(document.createTextNode(' ')); // Add space after the link
+          }
+      });
+    }
+
+
 
     container.appendChild(info);
 
