@@ -1,3 +1,5 @@
+const apiUrl = 'https://script.google.com/macros/s/AKfycbyGdVDGESjHgCsZ552KY8q_3W37mU0R3ybAq28Veyi6kN4G6G_C_izL60jcH-kVfkG6/exec';
+
 async function applyFilters() {
   // Get the filter values
   const stepName = document.getElementById('stepName').value;
@@ -62,7 +64,7 @@ function updateGallery(filteredData) {
         gifSrcLink.textContent = 'src'; // Set link text
         gifSrcLink.target = '_blank'; // Open in a new tab
         info.appendChild(gifSrcLink);
-        info.appendChild(document.createTextNode(' ')); // Add space
+        info.appendChild(document.createTextNode('   ')); // Add space
     }
 
     // Check if tutorial value is not empty
@@ -73,6 +75,29 @@ function updateGallery(filteredData) {
         tutorialLink.textContent = 'tutorial'; // Set link text
         tutorialLink.target = '_blank'; // Open in a new tab
         info.appendChild(tutorialLink);
+        info.appendChild(document.createTextNode('   ')); // Add space
+    }
+
+    // Check if song value is not empty
+    if (item.song) {
+      // Create link for tutorial
+      const songLink = document.createElement('a');
+      songLink.href = item.song; // Set link URL
+      songLink.textContent = 'song'; // Set link text
+      songLink.target = '_blank'; // Open in a new tab
+      info.appendChild(songLink);
+      info.appendChild(document.createTextNode('   ')); // Add space
+    }
+
+    // Check if creator value is not empty
+    if (item.creator) {
+      // Create link for creator
+      const creatorLink = document.createElement('a');
+      creatorLink.href = item.creator; // Set link URL
+      creatorLink.textContent = 'creator'; // Set link text
+      creatorLink.target = '_blank'; // Open in a new tab
+      info.appendChild(creatorLink);
+      info.appendChild(document.createTextNode('   ')); // Add space
     }
 
     container.appendChild(info);
@@ -86,9 +111,9 @@ function updateGallery(filteredData) {
 
 
 
-
+// for debugging
 function dispData(){
-  fetch('https://script.google.com/macros/s/AKfycbx2iJe-fNzy-e3jc0cdUeUnjYLW-kBPZhmf40nGlyBTia3oYtQ9fms2XZAPfJgAhLrs/exec')
+  fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
       console.log(data); // Process and display your data here
@@ -99,7 +124,7 @@ function dispData(){
 
 
 function getData(){
-  return fetch('https://script.google.com/macros/s/AKfycbx2iJe-fNzy-e3jc0cdUeUnjYLW-kBPZhmf40nGlyBTia3oYtQ9fms2XZAPfJgAhLrs/exec')
+  return fetch(apiUrl)
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
