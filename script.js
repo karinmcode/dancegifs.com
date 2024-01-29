@@ -1,4 +1,4 @@
-const apiUrl = 'https://script.google.com/macros/s/AKfycbzUYfN4umDjrmZCF-LwK8ogORSe1x321-HKJ7WO72MBw2vKiQ1vBWOlge3sO6BjbWiY/exec';
+const apiUrl = 'https://script.google.com/macros/s/AKfycbwNtaGkGiVER_YspzdmOaV9zQoIoOWGwanC36asECgykNvtWCKD9h2Yo_hBtRk4XJWk/exec';
 
 async function applyFilters() {
   // Get the filter values
