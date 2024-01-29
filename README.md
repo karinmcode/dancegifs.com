@@ -1,4 +1,4 @@
-# dancestepgallery
+# DanceStepGallery
 
 https://karinmcode.github.io/dancestepgallery/
 
