@@ -1,5 +1,6 @@
 const apiUrl = 'https://script.google.com/macros/s/AKfycbwNtaGkGiVER_YspzdmOaV9zQoIoOWGwanC36asECgykNvtWCKD9h2Yo_hBtRk4XJWk/exec';
 
+
 async function applyFilters() {
   // Get the filter values
   const stepName = document.getElementById('stepName').value.toLowerCase();
@@ -236,7 +237,18 @@ function resetFilters() {
   applyFilters();
 }
 
+// Function to call applyFilters when Enter key is pressed
+function handleKeyPress(event) {
+  if (event.key === 'Enter') {
+      applyFilters();
+  }
+}
 
+// Add event listeners to input fields
+document.getElementById('stepName').addEventListener('keypress', handleKeyPress);
+document.getElementById('style').addEventListener('keypress', handleKeyPress);
+document.getElementById('country').addEventListener('keypress', handleKeyPress);
+document.getElementById('creator').addEventListener('keypress', handleKeyPress);
 
 // Call this function when the page loads
 populateMenuOptions();
