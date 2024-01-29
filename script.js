@@ -15,10 +15,10 @@ async function applyFilters() {
 
     // Filter the data based on the selected filter values
     const filteredData = data.filter(item => {
-        return (stepName === '' || item.step.toLowerCase() === stepName) &&
-               (style === '' || item.style === style) &&
-               (creator === '' || item.creator === creator) &&
-               (country === '' || item.country === country);
+      return (stepName === '' || item.step.toLowerCase().includes(stepName.toLowerCase())) &&
+             (style === '' || item.style === style) &&
+             (creator === '' || item.creator === creator) &&
+             (country === '' || item.country === country);  
         // Include additional filters as needed
     });
 
