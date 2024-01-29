@@ -208,7 +208,7 @@ async function populateMenuOptions() {
 
 function transformGoogleDriveURL(url) {
   const baseUrl = "https://drive.google.com/thumbnail?id=";
-  const match = url.match(/export=view&id=([a-zA-Z0-9_-]+)/); //originalUrl = "http://drive.google.com/uc?export=view&id=11eSwhsuU-bFs8at5whcIx93KRzk8AjSI";
+  const match = url.match(/id=([a-zA-Z0-9_-]+)/) || url.match(/file\/d\/([a-zA-Z0-9_-]+)/);
 
   if (match && match[1]) {
       url = baseUrl + match[1];
@@ -216,8 +216,9 @@ function transformGoogleDriveURL(url) {
       // Return original URL if no ID is found or the format is incorrect
       return url;
   }
-  return url
+  return url;
 }
+
 
 // Example usage
 //const originalUrl = "http://drive.google.com/uc?export=view&id=11eSwhsuU-bFs8at5whcIx93KRzk8AjSI";
