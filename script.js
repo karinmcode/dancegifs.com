@@ -42,7 +42,8 @@ function updateGallery(filteredData) {
     container.appendChild(stepName);
 
     // Create and append the image
-    const gifUrl = item.gifUrl;
+    let gifUrl = item.gifUrl;
+    gifUrl = transformGoogleDriveURL(gifUrl);
     const img = document.createElement('img');
     img.src = gifUrl;
     img.alt = item.step;
@@ -142,6 +143,24 @@ async function populateMenuOptions() {
     console.error('Error fetching or processing data:', error);
   }
 }
+
+function transformGoogleDriveURL(url) {
+  const baseUrl = "https://drive.google.com/thumbnail?id=";
+  const match = url.match(/export=view&id=([a-zA-Z0-9_-]+)/); //originalUrl = "http://drive.google.com/uc?export=view&id=11eSwhsuU-bFs8at5whcIx93KRzk8AjSI";
+
+  if (match && match[1]) {
+      url = baseUrl + match[1];
+  } else {
+      // Return original URL if no ID is found or the format is incorrect
+      return url;
+  }
+  return url
+}
+
+// Example usage
+//const originalUrl = "http://drive.google.com/uc?export=view&id=11eSwhsuU-bFs8at5whcIx93KRzk8AjSI";
+//const transformedUrl = transformGoogleDriveURL(originalUrl);
+//console.log(transformedUrl);
 
 
 // Call this function when the page loads
