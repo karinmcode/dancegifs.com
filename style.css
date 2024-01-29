@@ -16,20 +16,11 @@ title {
 }
 
 
-.filter {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center; /* Center the filter elements */
-    flex-wrap: wrap; /* Wrap filter elements on smaller screens */
-}
-
-
-
 /* Style for the filter inputs container */
 .filter-inputs {
     display: flex;
     flex-wrap: wrap; /* Allow elements to wrap */
-    gap: 10px; /* Space between filter inputs */
+    gap: 5px; /* Space between filter inputs */
     width: 100%; /* Take full width */
 }
 
@@ -43,14 +34,14 @@ title {
 .filter label,
 .filter select,
 .filter input {
-    margin-right: 10px;
+    margin-right: 5px;
     margin-bottom: 10px; /* Add bottom margin for wrapping */
 }
 
 
 /* Align 'Apply' and 'Reset' Buttons on One Line */
 .filter button {
-    margin-top: 10px; /* Add margin for spacing */
+    margin-top: 5px; /* Add margin for spacing */
     margin-right: 5px; /* Space between buttons */
 }
 
@@ -75,13 +66,15 @@ title {
 
 #gallery img {
     max-width: 100%; /* Adjust to the width of the gallery item */
-    max-height: 100%; /* Set a max height for images */
+    max-height: 90%; /* Set a max height for images */
     border-radius: 4px; /* Rounded corners for images */
 }
 
 .responsive-gif {
     width: 100%; /* Make the image width adjust to the container width */
     height: auto; /* Keep the aspect ratio of the image */
+    max-height: 90%; /* Set a max height for images */
+
 }
 
 /* Step Name and Style */
