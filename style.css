@@ -10,10 +10,9 @@ title {
     text-align: center; /* Center align text */
 }
 
-.database {
-    font-family: Calibri, Helvetica, sans-serif; /* Fallback to Helvetica and sans-serif if Calibri is not available */
-    text-align: center; /* Center align text */
-    font-style: italic; /* Make text italic */
+/* Ensure Italic Font for 'database' Class */
+#database p {
+    font-style: italic;
 }
 
 
@@ -24,6 +23,23 @@ title {
     flex-wrap: wrap; /* Wrap filter elements on smaller screens */
 }
 
+
+
+/* Style for the filter inputs container */
+.filter-inputs {
+    display: flex;
+    flex-wrap: wrap; /* Allow elements to wrap */
+    gap: 10px; /* Space between filter inputs */
+    width: 100%; /* Take full width */
+}
+
+/* Style for the filter buttons container */
+.filter-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+
 .filter label,
 .filter select,
 .filter input {
@@ -32,7 +48,11 @@ title {
 }
 
 
-
+/* Align 'Apply' and 'Reset' Buttons on One Line */
+.filter button {
+    margin-top: 10px; /* Add margin for spacing */
+    margin-right: 5px; /* Space between buttons */
+}
 
 #gallery {
     display: flex;
@@ -86,3 +106,4 @@ title {
 .info a:hover {
     text-decoration: underline; /* Underline on hover for better user experience */
 }
+

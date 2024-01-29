@@ -11,42 +11,50 @@
         <h1>DANCE STEP GALLERY</h1>
     </div>
     <div class="filter">
-        <label for="stepName">Step Name</label>
-        <input type="text" id="stepName" placeholder="Enter Step Name">
+        <!-- Container for filter inputs -->
+        <div class="filter-inputs">
+            <label for="stepName">Step Name</label>
+            <input type="text" id="stepName" placeholder="Enter Step Name">
 
-        <label for="style">Style</label>
-        <select id="style">
-            <option value="">Select Style</option>
-            <!-- Style options will be populated here -->
-        </select>
+            <label for="style">Style</label>
+            <select id="style">
+                <option value="">Select Style</option>
+                <!-- Style options will be populated here -->
+            </select>
 
-        <label for="country">Country</label>
-        <select id="country">
-            <option value="">Select Country</option>
-            <!-- Country options will be populated dynamically -->
-        </select>
+            <label for="country">Country</label>
+            <select id="country">
+                <option value="">Select Country</option>
+                <!-- Country options will be populated dynamically -->
+            </select>
 
-        <label for="creator">Creator</label>
-        <select id="creator">
-            <option value="">Select Creator</option>
-            <!-- Creator options will be populated dynamically -->
-        </select>
+            <label for="creator">Creator</label>
+            <select id="creator">
+                <option value="">Select Creator</option>
+                <!-- Creator options will be populated dynamically -->
+            </select>
 
-        <!-- Sort By dropdown menu -->
-        <label for="sortBy">Sort By</label>
-        <select id="sortBy">
-            <option value="">Select Sorting</option>
-            <option value="stepName">Step Name</option>
-            <option value="style">Style</option>
-            <option value="country">Country</option>
-            <option value="hasGif">Gif</option>
-            <option value="creator">Creator</option>
-            <!-- Add more sorting options if needed -->
-        </select>
-
-        <button onclick="applyFilters()">Apply Filters</button>
-        <button onclick="resetFilters()">Reset Filters</button> <!-- Reset Filters button -->
+            <!-- Sort By dropdown menu -->
+            <label for="sortBy">Sort By</label>
+            <select id="sortBy">
+                <option value="">Select Sorting</option>
+                <option value="stepName">Step Name</option>
+                <option value="style">Style</option>
+                <option value="country">Country</option>
+                <option value="hasGif">Gif</option>
+                <option value="creator">Creator</option>
+                <!-- Add more sorting options if needed -->
+            </select>
+        </div>
+        
+        <!-- Container for buttons -->
+        <div class="filter-buttons">
+            <button onclick="applyFilters()">Apply Filters</button>
+            <button onclick="resetFilters()">Reset Filters</button> <!-- Reset Filters button -->
+   
+        </div>
     </div>
+
     <div id="database">
         <p>Database can be found 
             <a href="https://docs.google.com/spreadsheets/d/1Xtjep_coSiclWs9xd_3vfLdpHMJ5KTL8aRaV87dXzlc/edit?pli=1#gid=0" target="_blank">here</a>. 
