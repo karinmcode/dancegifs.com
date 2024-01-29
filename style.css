@@ -37,7 +37,6 @@ title {
     border-radius: 4px;
     padding: 5px;
     text-align: center; /* Center text inside each gallery item */
-    max-width: 200px; /* Set a max width for each gallery item */
     margin-bottom: 20px; /* Space between gallery items */
 }
 
@@ -57,4 +56,20 @@ title {
     margin: 5px 0; /* Space above and below the text */
     font-size: 0.9em; /* Slightly smaller font size */
     text-align: center; /* Center align text */
+}
+
+
+.info {
+    font-size: 0.8em; /* Smaller font size */
+    color: #555; /* A discrete, darker grey color */
+    margin: 5px 0; /* Some margin for spacing */
+    line-height: 1.4; /* Adjust line height for readability */
+    text-align: center; /* Center align text */
+}
+.info a {
+    color: #007bff; /* A standard link color */
+    text-decoration: none; /* Optional: removes underline from links */
+}
+.info a:hover {
+    text-decoration: underline; /* Underline on hover for better user experience */
 }

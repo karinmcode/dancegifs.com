@@ -49,6 +49,34 @@ function updateGallery(filteredData) {
     img.className = 'responsive-gif'; // Add a class for styling
     container.appendChild(img);
 
+    // Create and append info about step (src of the gif and tutorial links)
+    const info = document.createElement('p');
+    info.className = 'info'; // Add a class for styling
+
+    // Check if gifSrc value is not empty
+    if (item.gifSrc) {
+        // Create link for gifSrc
+        const gifSrcLink = document.createElement('a');
+        gifSrcLink.href = item.gifSrc; // Set link URL
+        gifSrcLink.textContent = 'src'; // Set link text
+        gifSrcLink.target = '_blank'; // Open in a new tab
+        info.appendChild(gifSrcLink);
+        info.appendChild(document.createTextNode(' ')); // Add space
+    }
+
+    // Check if tutorial value is not empty
+    if (item.tutorial) {
+        // Create link for tutorial
+        const tutorialLink = document.createElement('a');
+        tutorialLink.href = item.tutorial; // Set link URL
+        tutorialLink.textContent = 'tutorial'; // Set link text
+        tutorialLink.target = '_blank'; // Open in a new tab
+        info.appendChild(tutorialLink);
+    }
+
+    container.appendChild(info);
+
+
     // Append the container to the gallery
     gallery.appendChild(container);
   });
@@ -118,4 +146,5 @@ async function populateMenuOptions() {
 
 // Call this function when the page loads
 populateMenuOptions();
+applyFilters();
 //dispData();
