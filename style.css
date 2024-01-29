@@ -1,15 +1,26 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Calibri;
+    text-align: center; /* Center align text */
+    margin: 0;
+    padding: 0;
+}
+
+title {
+    font-family: Calibri;
 }
 
 .filter {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center; /* Center the filter elements */
+    flex-wrap: wrap; /* Wrap filter elements on smaller screens */
 }
 
 .filter label,
 .filter select,
 .filter input {
     margin-right: 10px;
+    margin-bottom: 10px; /* Add bottom margin for wrapping */
 }
 
 #gallery {
@@ -17,19 +28,31 @@ body {
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 20px;
+    justify-content: center; /* Center the gallery items */
 }
 
-#gallery img {
-    max-width: 100px;
-    max-height: 100px;
+#gallery .gallery-item {
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 5px;
+    text-align: center; /* Center text inside each gallery item */
+    max-width: 200px; /* Set a max width for each gallery item */
+    margin-bottom: 20px; /* Space between gallery items */
+}
+
+#gallery img {
+    max-width: 100%; /* Adjust to the width of the gallery item */
+    max-height: 150px; /* Set a max height for images */
+    border-radius: 4px; /* Rounded corners for images */
 }
 
 .responsive-gif {
     width: 100%; /* Make the image width adjust to the container width */
     height: auto; /* Keep the aspect ratio of the image */
-    max-width: 400px; /* Optional: set a maximum width */
-  }
-  
+}
+
+/* Step Name and Style */
+#gallery p {
+    margin: 5px 0; /* Space above and below the text */
+    font-size: 0.9em; /* Slightly smaller font size */
+}
