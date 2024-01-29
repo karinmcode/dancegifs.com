@@ -1,4 +1,4 @@
-fetch('https://script.google.com/macros/s/AKfycbz7jCwb-JcH30BgwxjR85iZYwdGurcxaJZql7sh6yAxQQTcg7c_cK8rxViY-5TVsplo-g/exec')
+fetch('https://script.google.com/macros/s/AKfycbxI2y5PAFn4SwiwsXRUMewDd9ewERubWRh9LgZJCMsHp7gmiS8KyeXroF1t3LVhP1ZF/exec')
   .then(response => response.json())
   .then(data => {
     console.log(data); // Process and display your data here
