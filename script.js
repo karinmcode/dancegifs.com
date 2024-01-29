@@ -6,44 +6,55 @@ async function applyFilters() {
   // Add other filters as needed
 
   try {
-      // Build the URL for the Google Sheets API
-      // Note: You need to set up your Google Sheets API and have the URL ready
+    // Fetch data from Google Sheets
+    const data = await getData(); // Ensure you await the Promise
 
-      // Fetch data from Google Sheets
-      const data = getData();
+    // Filter the data based on the selected filter values
+    const filteredData = data.filter(item => {
+        return (stepName === '' || item.step === stepName) &&
+               (style === '' || item.style === style) &&
+               (country === '' || item.country === country);
+        // Include additional filters as needed
+    });
 
-      // Filter the data based on the selected filter values
-      const filteredData = data.values.filter(row => {
-          // Assuming the structure of your row is [gifUrl, stepName, style, country, ...]
-          return (stepName === '' || row[1] === stepName) &&
-                 (style === '' || row[2] === style) &&
-                 (country === '' || row[3] === country);
-          // Include additional filters as needed
-      });
-
-      // Update the gallery with the filtered data
-      updateGallery(filteredData);
+    // Update the gallery with the filtered data
+    updateGallery(filteredData);
   } catch (error) {
-      console.error('Error fetching or processing data:', error);
-      // Handle errors, such as by displaying a message to the user
+    console.error('Error fetching or processing data:', error);
+    // Handle errors, such as by displaying a message to the user
   }
 }
+
 
 function updateGallery(filteredData) {
   const gallery = document.getElementById('gallery');
   gallery.innerHTML = ''; // Clear existing content
 
-  // Loop through the filtered data and create elements for each GIF
-  filteredData.forEach(row => {
-      const gifUrl = row[0]; // Assuming the first column is the GIF URL
-      const img = document.createElement('img');
-      img.src = gifUrl;
-      img.alt = 'Dance Step';
-      // Add other attributes or classes as needed
+  filteredData.forEach(item => {
+    // Create a container for each item
+    const container = document.createElement('div');
+    container.className = 'gallery-item'; // Add a class for styling
 
-      gallery.appendChild(img);
+    // Create and append the step name
+    const stepName = document.createElement('p');
+    stepName.textContent =  `${item.step} (${item.style})`;
+    stepName.className = 'stepName'; // Add a class for styling
+    container.appendChild(stepName);
+
+    // Create and append the image
+    const gifUrl = item.gifUrl;
+    const img = document.createElement('img');
+    img.src = gifUrl;
+    img.alt = item.step;
+    img.className = 'responsive-gif'; // Add a class for styling
+    container.appendChild(img);
+
+    // Append the container to the gallery
+    gallery.appendChild(container);
   });
 }
+
+
 
 
 
@@ -57,40 +68,54 @@ function dispData(){
 
 }
 
+
 function getData(){
-  fetch('https://script.google.com/macros/s/AKfycbwV3kqF5QBNfUR809OzI0DnUN_dj__t4pW1-zXbuMBVSf_Y0gjYeSX7iVKK9n_uyPg/exec')
-    .then(response => response.json())
-    .then(data => {
-      console.log(data); // Process and display your data here
+  return fetch('https://script.google.com/macros/s/AKfycbwV3kqF5QBNfUR809OzI0DnUN_dj__t4pW1-zXbuMBVSf_Y0gjYeSX7iVKK9n_uyPg/exec')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
     })
     .catch(error => console.error('Error K:', error));
-
 }
 
-async function populateCountryOptions() {
+async function populateMenuOptions() {
   try {
-      const data = await getData(); // Wait for data to be fetched
+    const data = await getData(); // Wait for data to be fetched
 
-      // Assuming the first row contains headers
-      const headers = data[0];
-      const countryIndex = headers.indexOf('Country');
+    // Extract and sort unique countries
+    const countries = data.map(item => item.country)
+                          .filter((value, index, self) => value && self.indexOf(value) === index)
+                          .sort();
 
-      // Extract unique countries
-      const countries = data.slice(1).map(row => row[countryIndex])
-                                   .filter((value, index, self) => value && self.indexOf(value) === index);
+    // Populate the 'country' dropdown
+    const countrySelect = document.getElementById('country');
+    countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = option.textContent = country;
+        countrySelect.appendChild(option);
+    });
 
-      // Populate the 'country' dropdown
-      const countrySelect = document.getElementById('country');
-      countries.forEach(country => {
-          const option = document.createElement('option');
-          option.value = option.textContent = country;
-          countrySelect.appendChild(option);
-      });
+    // Extract and sort unique styles
+    const styles = data.map(item => item.style)
+                       .filter((value, index, self) => value && self.indexOf(value) === index)
+                       .sort();
+
+    // Populate the 'style' dropdown
+    const styleSelect = document.getElementById('style');
+    styles.forEach(style => {
+        const option = document.createElement('option');
+        option.value = option.textContent = style;
+        styleSelect.appendChild(option);
+    });
+
   } catch (error) {
-      console.error('Error fetching or processing data:', error);
+    console.error('Error fetching or processing data:', error);
   }
 }
 
+
 // Call this function when the page loads
-//populateCountryOptions();
-dispData();
+populateMenuOptions();
+//dispData();
