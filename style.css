@@ -15,6 +15,13 @@ title {
     font-style: italic;
 }
 
+/* Style for the filter area */
+.filter {
+    display: flex;
+    flex-direction: column; /* Stack child elements vertically */
+    align-items: center; /* Center align items in the container */
+    gap: 10px; /* Space between filter inputs and buttons */
+}
 
 /* Style for the filter inputs container */
 .filter-inputs {
