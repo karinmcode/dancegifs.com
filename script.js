@@ -96,14 +96,31 @@ function updateGallery(filteredData) {
 
     // Check if tutorial value is not empty
     if (item.tutorial) {
-        // Create link for tutorial
-        const tutorialLink = document.createElement('a');
-        tutorialLink.href = item.tutorial; // Set link URL
-        tutorialLink.textContent = 'tutorial'; // Set link text
-        tutorialLink.target = '_blank'; // Open in a new tab
-        info.appendChild(tutorialLink);
-        info.appendChild(document.createTextNode('   ')); // Add space
+      // Split the tutorial string into an array of URLs
+      const tutorialUrls = item.tutorial.split(';');
+
+      // Create a text node for "tutorial" and append it
+      const tutorialText = document.createTextNode('tutorial ');
+      info.appendChild(tutorialText);
+
+      // Iterate over each tutorial URL
+      tutorialUrls.forEach((url, index) => {
+          if (url.trim()) { // Check if the URL is not just whitespace
+              // Create link for each tutorial number
+              const tutorialLink = document.createElement('a');
+              tutorialLink.href = url.trim(); // Set link URL, trimming any extra whitespace
+              tutorialLink.textContent = `${index + 1}`; // Set link text to the number
+              tutorialLink.target = '_blank'; // Open in a new tab
+              info.appendChild(tutorialLink);
+
+              // Add comma after the link except for the last one
+              if (index < tutorialUrls.length - 1) {
+                  info.appendChild(document.createTextNode(', '));
+              }
+          }
+      });
     }
+
 
     // Check if song value is not empty
     if (item.song) {
@@ -132,19 +149,28 @@ function updateGallery(filteredData) {
       // Split the videos string into an array of URLs
       const videoUrls = item.videos.split(';');
       
+      // Create a text node for "video" and append it
+      const videoText = document.createTextNode('video ');
+      info.appendChild(videoText);
+
       // Iterate over each video URL
       videoUrls.forEach((url, index) => {
           if (url.trim()) { // Check if the URL is not just whitespace
-              // Create link for each video
+              // Create link for each video number
               const videoLink = document.createElement('a');
               videoLink.href = url.trim(); // Set link URL, trimming any extra whitespace
-              videoLink.textContent = `vid ${index + 1}`; // Set link text to "vid 1", "vid 2", etc.
+              videoLink.textContent = `${index + 1}`; // Set link text to the number
               videoLink.target = '_blank'; // Open in a new tab
               info.appendChild(videoLink);
-              info.appendChild(document.createTextNode(' ')); // Add space after the link
+
+              // Add comma after the link except for the last one
+              if (index < videoUrls.length - 1) {
+                  info.appendChild(document.createTextNode(', '));
+              }
           }
       });
     }
+
 
 
 
