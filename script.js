@@ -26,12 +26,16 @@ async function applyFilters(dataInput = null) {
       filteredData = filteredData.sort((a, b) => {
         if (sortBy === 'stepName') {
           return a.step.localeCompare(b.step);
+
         } else if (sortBy === 'style') {
           return a.style.localeCompare(b.style);
+
         } else if (sortBy === 'country') {
           return a.country.localeCompare(b.country);
+
         } else if (sortBy === 'creator') {
           return a.creator.localeCompare(b.creator);
+
         } else if (sortBy === 'hasGif') {
           // Assuming 'hasGif' is a boolean indicating if a gifUrl exists
           return (a.gifUrl ? 1 : -1) - (b.gifUrl ? 1 : -1);
@@ -42,6 +46,7 @@ async function applyFilters(dataInput = null) {
 
     // Update the gallery with the filtered data
     updateGallery(filteredData);
+
   } catch (error) {
     console.error('Error fetching or processing data:', error);
     // Handle errors, such as by displaying a message to the user
@@ -270,7 +275,12 @@ document.getElementById('style').addEventListener('keypress', handleKeyPress);
 document.getElementById('country').addEventListener('keypress', handleKeyPress);
 document.getElementById('creator').addEventListener('keypress', handleKeyPress);
 
+
+
 // Call this function when the page loads
-data = populateMenuOptions();
-applyFilters(data);
-//dispData();
+async function init() {
+  const data = await populateMenuOptions();
+  applyFilters(data);
+}
+
+init(); // Execute the init function to start the application
