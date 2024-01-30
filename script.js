@@ -79,29 +79,18 @@ function updateGallery(filteredData) {
     styleElement.textContent = item.style + ' ' + getFlagEmoji(item.country);
     styleElement.className = 'style-name'; // Add a class for styling
     stepAndStyleContainer.appendChild(styleElement);
-
-    // Append flag emoji based on the country
-    const countryFlag = document.createElement('span');
-    countryFlag.textContent = getFlagEmoji(item.country); // Function to get flag emoji
-    countryFlag.className = 'country-flag'; // Add a class for styling
-    stepAndStyleContainer.appendChild(countryFlag);
-
     container.appendChild(stepAndStyleContainer);
 
-    // Create and append the step name
-    const stepName = document.createElement('p');
-    stepName.textContent =  `${item.step} (${item.style})`;
-    stepName.className = 'stepName'; // Add a class for styling
-    container.appendChild(stepName);
-
-    // Create and append the image
-    let gifUrl = item.gifUrl;
-    gifUrl = transformGoogleDriveURL(gifUrl);
-    const img = document.createElement('img');
-    img.src = gifUrl;
-    img.alt = item.step;
-    img.className = 'responsive-gif'; // Add a class for styling
-    container.appendChild(img);
+    // Check if gifUrl is provided
+    if (item.gifUrl) {
+      let gifUrl = item.gifUrl;
+      gifUrl = transformGoogleDriveURL(gifUrl);
+      const img = document.createElement('img');
+      img.src = gifUrl;
+      img.alt = item.step;
+      img.className = 'responsive-gif'; // Add a class for styling
+      container.appendChild(img);
+    }
 
     // Create and append info about step (src of the gif and tutorial links)
     const info = document.createElement('p');
@@ -112,10 +101,10 @@ function updateGallery(filteredData) {
         // Create link for gifSrc
         const gifSrcLink = document.createElement('a');
         gifSrcLink.href = item.gifSrc; // Set link URL
-        gifSrcLink.textContent = 'src'; // Set link text
+        gifSrcLink.textContent = 'source'; // Set link text
         gifSrcLink.target = '_blank'; // Open in a new tab
         info.appendChild(gifSrcLink);
-        info.appendChild(document.createTextNode('   ')); // Add space
+        info.appendChild(document.createTextNode('  |  ')); // Add space
     }
 
     // Check if tutorial value is not empty
@@ -141,7 +130,7 @@ function updateGallery(filteredData) {
             if (index < tutorialUrls.length - 1) {
                 info.appendChild(document.createTextNode(', '));
             } else {
-                info.appendChild(document.createTextNode('    ')); // Add four spaces for the last link
+                info.appendChild(document.createTextNode('  |  ')); // Add space
             }
         }
       });
@@ -156,7 +145,7 @@ function updateGallery(filteredData) {
       songLink.textContent = 'song'; // Set link text
       songLink.target = '_blank'; // Open in a new tab
       info.appendChild(songLink);
-      info.appendChild(document.createTextNode('   ')); // Add space
+      info.appendChild(document.createTextNode('  |  ')); // Add space
     }
 
     // Check if creator value is not empty
@@ -167,21 +156,29 @@ function updateGallery(filteredData) {
       creatorLink.textContent = 'by '+item.creator; // Set link text
       creatorLink.target = '_blank'; // Open in a new tab
       info.appendChild(creatorLink);
-      info.appendChild(document.createTextNode('   ')); // Add space
+      info.appendChild(document.createTextNode('  |  ')); // Add space
     }
 
     // Check if videos value is not empty
     if (item.videos) {
       // Split the videos string into an array of URLs
-      const videoUrls = item.videos.split(';');
-      
-      // Create a text node for "video" and append it
-      const videoText = document.createTextNode('video ');
-      info.appendChild(videoText);
+      const videoUrls = item.videos.split(';').filter(url => url.trim());
 
-      // Iterate over each video URL
-      videoUrls.forEach((url, index) => {
-          if (url.trim()) { // Check if the URL is not just whitespace
+      // Check the number of video URLs
+      if (videoUrls.length === 1) {
+          // Create link for the single video
+          const videoLink = document.createElement('a');
+          videoLink.href = videoUrls[0].trim(); // Set link URL, trimming any extra whitespace
+          videoLink.textContent = 'video'; // Set link text to "video"
+          videoLink.target = '_blank'; // Open in a new tab
+          info.appendChild(videoLink);// info.innerHTML
+      } else {
+          // Create a text node for "video" and append it
+          const videoText = document.createTextNode('video ');
+          info.appendChild(videoText);
+
+          // Iterate over each video URL
+          videoUrls.forEach((url, index) => {
               // Create link for each video number
               const videoLink = document.createElement('a');
               videoLink.href = url.trim(); // Set link URL, trimming any extra whitespace
@@ -193,10 +190,20 @@ function updateGallery(filteredData) {
               if (index < videoUrls.length - 1) {
                   info.appendChild(document.createTextNode(', '));
               }
-          }
-      });
+          });
+      }
     }
 
+
+    // After appending all elements to `info`
+    if (info.hasChildNodes()) {
+      let lastChild = info.lastChild;
+
+      // Additionally check for trailing '|'
+      if (lastChild && lastChild.nodeType === Node.TEXT_NODE) {
+          lastChild.textContent = lastChild.textContent.replace(/[ |]+$/, '');
+      }
+    }
 
 
 

@@ -91,17 +91,15 @@ title {
 
 .step-name {
     font-weight: bold;
+    font-size: 16px;
 }
 
 .style-name {
     font-weight: bold;
     color: grey;
+    align-items: left;
+    font-size: 14px;
 }
-
-.country-flag {
-    margin-left: 10px; /* Adjust as needed */
-}
-
 
 /* Step Name and Style */
 #gallery p {
