@@ -38,7 +38,15 @@ async function applyFilters(dataInput = null) {
 
         } else if (sortBy === 'hasGif') {
           // Assuming 'hasGif' is a boolean indicating if a gifUrl exists
-          return (a.gifUrl ? 1 : -1) - (b.gifUrl ? 1 : -1);
+          return (a.gifUrl ? -1 : 1) - (b.gifUrl ? -1 : 1);
+
+        } else if (sortBy === 'hasVideo') {
+          // Assuming 'hasVideo' is a boolean indicating if a gifUrl exists
+          return (a.videos ? -1 : 1) - (b.videos ? -1 : 1);
+
+        } else if (sortBy === 'hasTutorial') {
+          // Assuming 'hasVideo' is a boolean indicating if a gifUrl exists
+          return (a.tutorial ? -1 : 1) - (b.tutorial ? -1 : 1);
         }
       });
     }
