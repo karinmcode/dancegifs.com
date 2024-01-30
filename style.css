@@ -28,7 +28,7 @@ title {
     display: flex;
     flex-wrap: wrap; /* Allow elements to wrap */
     gap: 5px; /* Space between filter inputs */
-    width: 100%; /* Take full width */
+    width: 90%; /* Take full width */
 }
 
 /* Style for the filter buttons container */
