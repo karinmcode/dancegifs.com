@@ -105,19 +105,21 @@ function updateGallery(filteredData) {
 
       // Iterate over each tutorial URL
       tutorialUrls.forEach((url, index) => {
-          if (url.trim()) { // Check if the URL is not just whitespace
-              // Create link for each tutorial number
-              const tutorialLink = document.createElement('a');
-              tutorialLink.href = url.trim(); // Set link URL, trimming any extra whitespace
-              tutorialLink.textContent = `${index + 1}`; // Set link text to the number
-              tutorialLink.target = '_blank'; // Open in a new tab
-              info.appendChild(tutorialLink);
+        if (url.trim()) { // Check if the URL is not just whitespace
+            // Create link for each tutorial number
+            const tutorialLink = document.createElement('a');
+            tutorialLink.href = url.trim(); // Set link URL, trimming any extra whitespace
+            tutorialLink.textContent = `${index + 1}`; // Set link text to the number
+            tutorialLink.target = '_blank'; // Open in a new tab
+            info.appendChild(tutorialLink);
 
-              // Add comma after the link except for the last one
-              if (index < tutorialUrls.length - 1) {
-                  info.appendChild(document.createTextNode(', '));
-              }
-          }
+            // Add comma after the link except for the last one, four spaces for the last one
+            if (index < tutorialUrls.length - 1) {
+                info.appendChild(document.createTextNode(', '));
+            } else {
+                info.appendChild(document.createTextNode('    ')); // Add four spaces for the last link
+            }
+        }
       });
     }
 
