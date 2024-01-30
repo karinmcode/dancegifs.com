@@ -1,26 +1,23 @@
 const apiUrl = 'https://script.google.com/macros/s/AKfycbwNtaGkGiVER_YspzdmOaV9zQoIoOWGwanC36asECgykNvtWCKD9h2Yo_hBtRk4XJWk/exec';
 
 
-async function applyFilters() {
+async function applyFilters(dataInput = null) {
   // Get the filter values
   const stepName = document.getElementById('stepName').value.toLowerCase();
   const style = document.getElementById('style').value;
   const country = document.getElementById('country').value;
   const creator = document.getElementById('creator').value;
 
-  // Add other filters as needed
-
   try {
-    // Fetch data from Google Sheets
-    const data = await getData(); // Ensure you await the Promise
+    // Fetch data from Google Sheets if not provided as input
+    const data = dataInput || await getData();
 
     // Filter the data based on the selected filter values
     const filteredData = data.filter(item => {
-      return (stepName === '' || item.step.toLowerCase().includes(stepName.toLowerCase())) &&
+      return (stepName === '' || item.step.toLowerCase().includes(stepName)) &&
              (style === '' || item.style === style) &&
              (creator === '' || item.creator === creator) &&
-             (country === '' || item.country === country);  
-        // Include additional filters as needed
+             (country === '' || item.country === country);
     });
 
     // Update the gallery with the filtered data
@@ -30,6 +27,7 @@ async function applyFilters() {
     // Handle errors, such as by displaying a message to the user
   }
 }
+
 
 
 function updateGallery(filteredData) {
@@ -202,6 +200,8 @@ async function populateMenuOptions() {
         creatorSelect.appendChild(option);
     });
 
+    return data;
+
   } catch (error) {
     console.error('Error fetching or processing data:', error);
   }
@@ -251,6 +251,6 @@ document.getElementById('country').addEventListener('keypress', handleKeyPress);
 document.getElementById('creator').addEventListener('keypress', handleKeyPress);
 
 // Call this function when the page loads
-populateMenuOptions();
-applyFilters();
+data = populateMenuOptions();
+applyFilters(data);
 //dispData();
