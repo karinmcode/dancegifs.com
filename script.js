@@ -7,18 +7,38 @@ async function applyFilters(dataInput = null) {
   const style = document.getElementById('style').value;
   const country = document.getElementById('country').value;
   const creator = document.getElementById('creator').value;
+  const sortBy = document.getElementById('sortBy').value;
 
   try {
     // Fetch data from Google Sheets if not provided as input
     const data = dataInput || await getData();
 
     // Filter the data based on the selected filter values
-    const filteredData = data.filter(item => {
+    let filteredData = data.filter(item => {
       return (stepName === '' || item.step.toLowerCase().includes(stepName)) &&
              (style === '' || item.style === style) &&
              (creator === '' || item.creator === creator) &&
              (country === '' || item.country === country);
     });
+
+    // Sort the filtered data
+    if (sortBy) {
+      filteredData = filteredData.sort((a, b) => {
+        if (sortBy === 'stepName') {
+          return a.step.localeCompare(b.step);
+        } else if (sortBy === 'style') {
+          return a.style.localeCompare(b.style);
+        } else if (sortBy === 'country') {
+          return a.country.localeCompare(b.country);
+        } else if (sortBy === 'creator') {
+          return a.creator.localeCompare(b.creator);
+        } else if (sortBy === 'hasGif') {
+          // Assuming 'hasGif' is a boolean indicating if a gifUrl exists
+          return (a.gifUrl ? 1 : -1) - (b.gifUrl ? 1 : -1);
+        }
+      });
+    }
+
 
     // Update the gallery with the filtered data
     updateGallery(filteredData);
