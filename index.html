@@ -14,29 +14,29 @@
         <!-- Container for filter inputs -->
         <div class="filter-inputs">
             <label for="stepName">Step Name</label>
-            <input type="text" id="stepName" placeholder="Enter Step Name">
+            <input type="text" id="stepName" placeholder="Enter Step Name"  onchange="applyFilters()">
 
             <label for="style">Style</label>
-            <select id="style">
+            <select id="style"  onchange="applyFilters()">
                 <option value="">Select Style</option>
                 <!-- Style options will be populated here -->
             </select>
 
             <label for="country">Country</label>
-            <select id="country">
+            <select id="country"   onchange="applyFilters()">
                 <option value="">Select Country</option>
                 <!-- Country options will be populated dynamically -->
             </select>
 
             <label for="creator">Creator</label>
-            <select id="creator">
+            <select id="creator"   onchange="applyFilters()">
                 <option value="">Select Creator</option>
                 <!-- Creator options will be populated dynamically -->
             </select>
 
             <!-- Sort By dropdown menu -->
             <label for="sortBy">Sort By</label>
-            <select id="sortBy">
+            <select id="sortBy"   onchange="applyFilters()">
                 <option value="">Select Sorting</option>
                 <option value="stepName">Step Name</option>
                 <option value="style">Style</option>
