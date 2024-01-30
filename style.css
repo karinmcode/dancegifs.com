@@ -29,6 +29,9 @@ title {
     flex-wrap: wrap; /* Allow elements to wrap */
     gap: 5px; /* Space between filter inputs */
     width: 90%; /* Take full width */
+    align-items: center; /* Center align items in the container */
+    justify-content: center; /* Center the buttons horizontally */
+
 }
 
 /* Style for the filter buttons container */
