@@ -82,6 +82,27 @@ title {
 
 }
 
+.step-and-style-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+.step-name {
+    font-weight: bold;
+}
+
+.style-name {
+    font-weight: bold;
+    color: grey;
+}
+
+.country-flag {
+    margin-left: 10px; /* Adjust as needed */
+}
+
+
 /* Step Name and Style */
 #gallery p {
     margin: 5px 0; /* Space above and below the text */

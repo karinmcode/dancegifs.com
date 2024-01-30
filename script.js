@@ -64,6 +64,30 @@ function updateGallery(filteredData) {
     const container = document.createElement('div');
     container.className = 'gallery-item'; // Add a class for styling
 
+    // Create a container for the step name and style
+    const stepAndStyleContainer = document.createElement('div');
+    stepAndStyleContainer.className = 'step-and-style-container'; // Add a class for styling
+
+    // Create and append the step name
+    const stepNameElement = document.createElement('span');
+    stepNameElement.textContent = item.step;
+    stepNameElement.className = 'step-name'; // Add a class for styling
+    stepAndStyleContainer.appendChild(stepNameElement);
+
+    // Create and append the style
+    const styleElement = document.createElement('span');
+    styleElement.textContent = item.style + ' ' + getFlagEmoji(item.country);
+    styleElement.className = 'style-name'; // Add a class for styling
+    stepAndStyleContainer.appendChild(styleElement);
+
+    // Append flag emoji based on the country
+    const countryFlag = document.createElement('span');
+    countryFlag.textContent = getFlagEmoji(item.country); // Function to get flag emoji
+    countryFlag.className = 'country-flag'; // Add a class for styling
+    stepAndStyleContainer.appendChild(countryFlag);
+
+    container.appendChild(stepAndStyleContainer);
+
     // Create and append the step name
     const stepName = document.createElement('p');
     stepName.textContent =  `${item.step} (${item.style})`;
@@ -185,6 +209,30 @@ function updateGallery(filteredData) {
 }
 
 
+function getFlagEmoji(countryName) {
+  // Simple mapping of country names to emojis
+  const flags = {
+      'USA': '🇺🇸',
+      'Angola': '🇦🇴',
+      'South Africa': '🇿🇦',
+      'Angola/South Africa': '🇦🇴🇿🇦',
+      'Ghana': '🇬🇭',
+      'Nigeria': '🇳🇬',
+      'Gabon': '🇬🇦',
+      'Congo': '🇨🇬🇨🇩',
+      'Rwanda': '🇷🇼',
+      'Jamaica': '🇯🇲',
+      'Ivory Coast': '🇨🇮',
+      'Uganda': '🇺🇬',
+      'Ethiopia': '🇪🇹',
+      'Kenya': '🇰🇪',
+      'Cameroun': '🇨🇲',
+      'Senegal': '🇸🇳',
+
+      // Add more countries as needed
+  };
+  return flags[countryName] || ''; // Return the emoji or an empty string if not found
+}
 
 
 // for debugging
