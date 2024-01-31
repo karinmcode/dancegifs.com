@@ -1,7 +1,7 @@
 # DanceGifs.com
 
 # Overview
-The Dance Step Gallery is an interactive web application designed for dance enthusiasts and learners. This platform provides a rich collection of dance steps, showcasing various styles and origins from around the world. It serves as an educational and engaging resource for those looking to explore the diversity of dance.
+DanceGifs.com is an interactive web application designed for dance enthusiasts and learners. This platform provides a rich collection of dance steps, showcasing various styles and origins from around the world. It serves as an educational and engaging resource for those looking to explore the diversity of dance.
 
 # Features
 
@@ -15,4 +15,4 @@ Collaborative Database: Access a community-driven database that grows with contr
 Interactive Learning: Each entry includes links to video tutorials and further resources, allowing for an immersive learning experience.
 
 # Contributing
-We welcome contributions to the Dance Step Gallery! If you have a dance step or resource to add, please contact us at karin4dnc@gmail.com, or visit our database to add your input.
+We welcome contributions to the DanceGifs.com! If you have a dance step or resource to add, please contact us at karin4dnc@gmail.com, or visit our database to add your input.
