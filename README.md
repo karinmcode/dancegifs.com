@@ -1,4 +1,4 @@
-# DanceStepGallery
+# DanceGifs.com
 
 https://karinmcode.github.io/dancestepgallery/
 
