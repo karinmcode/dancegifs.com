@@ -1,5 +1,20 @@
 const apiUrl = 'https://script.google.com/macros/s/AKfycbwNtaGkGiVER_YspzdmOaV9zQoIoOWGwanC36asECgykNvtWCKD9h2Yo_hBtRk4XJWk/exec';
 
+const adCodeGallery = `
+<!-- Google AdSense Gallery Ad -->
+<div class="ad-container">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1258549624357094" crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-1258549624357094"
+       data-ad-slot="3012017971"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+`;
 
 async function applyFilters(dataInput = null) {
   // Get the filter values
@@ -63,10 +78,22 @@ async function applyFilters(dataInput = null) {
 
 
 
+
+
+
+
+
+
+
+
+
+
 function updateGallery(filteredData) {
   const gallery = document.getElementById('gallery');
   gallery.innerHTML = ''; // Clear existing content
 
+  const adCode = adCodeGallery;
+  
   filteredData.forEach(item => {
     // Create a container for each item
     const container = document.createElement('div');
@@ -144,7 +171,6 @@ function updateGallery(filteredData) {
       });
     }
 
-
     // Check if song value is not empty
     if (item.song) {
       // Create link for tutorial
@@ -213,15 +239,38 @@ function updateGallery(filteredData) {
       }
     }
 
-
-
     container.appendChild(info);
 
 
+    
     // Append the container to the gallery
     gallery.appendChild(container);
+
+    // Debugging output
+    console.log(`Index: ${index}, Total Items: ${filteredData.length}, Condition 1: ${(index + 1) % 4 === 0}, Condition 2: ${(index + 1) === filteredData.length}, Condition 3: ${(index + 1) % 4 !== 0}`);
+
+    // GALLERY AD Check if it's the 4th item and not the last item, then insert the ad
+    if ((index + 1) % 4 === 0 && (index + 1) !== filteredData.length) {
+      const adContainer = document.createElement('div');
+      adContainer.innerHTML = adCode;
+      gallery.appendChild(adContainer);
+    } else if ((index + 1) === filteredData.length && (index + 1) % 4 !== 0) {
+      // If it's the last item and the total number of items is not a multiple of 4, insert the ad
+      const adContainer = document.createElement('div');
+      adContainer.innerHTML = adCode;
+      gallery.appendChild(adContainer);
+    }
+
+
+
   });
 }
+
+
+
+
+
+
 
 
 function getFlagEmoji(countryName) {
@@ -250,6 +299,12 @@ function getFlagEmoji(countryName) {
 }
 
 
+
+
+
+
+
+
 // for debugging
 function dispData(){
   fetch(apiUrl)
@@ -272,6 +327,10 @@ function getData(){
     })
     .catch(error => console.error('Error K:', error));
 }
+
+
+
+
 
 async function populateMenuOptions() {
   try {
@@ -336,11 +395,16 @@ function transformGoogleDriveURL(url) {
   return url;
 }
 
-
 // Example usage
 //const originalUrl = "http://drive.google.com/uc?export=view&id=11eSwhsuU-bFs8at5whcIx93KRzk8AjSI";
 //const transformedUrl = transformGoogleDriveURL(originalUrl);
 //console.log(transformedUrl);
+
+
+
+
+
+
 
 function resetFilters() {
   document.getElementById('stepName').value = '';
@@ -352,6 +416,12 @@ function resetFilters() {
   // Optionally, re-apply filters to update the gallery
   applyFilters();
 }
+
+
+
+
+
+
 
 // Function to call applyFilters when Enter key is pressed
 function handleKeyPress(event) {
@@ -365,6 +435,10 @@ document.getElementById('stepName').addEventListener('keypress', handleKeyPress)
 document.getElementById('style').addEventListener('keypress', handleKeyPress);
 document.getElementById('country').addEventListener('keypress', handleKeyPress);
 document.getElementById('creator').addEventListener('keypress', handleKeyPress);
+
+
+
+
 
 
 
