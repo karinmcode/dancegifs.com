@@ -94,7 +94,9 @@ function updateGallery(filteredData) {
 
   const adCode = adCodeGallery;
   
-  filteredData.forEach(item => {
+  for (let index = 0; index < filteredData.length; index++) {
+    const item = filteredData[index];
+
     // Create a container for each item
     const container = document.createElement('div');
     container.className = 'gallery-item'; // Add a class for styling
@@ -246,9 +248,6 @@ function updateGallery(filteredData) {
     // Append the container to the gallery
     gallery.appendChild(container);
 
-    // Debugging output
-    console.log(`Index: ${index}, Total Items: ${filteredData.length}, Condition 1: ${(index + 1) % 4 === 0}, Condition 2: ${(index + 1) === filteredData.length}, Condition 3: ${(index + 1) % 4 !== 0}`);
-
     // GALLERY AD Check if it's the 4th item and not the last item, then insert the ad
     if ((index + 1) % 4 === 0 && (index + 1) !== filteredData.length) {
       const adContainer = document.createElement('div');
@@ -261,9 +260,7 @@ function updateGallery(filteredData) {
       gallery.appendChild(adContainer);
     }
 
-
-
-  });
+  };
 }
 
 
