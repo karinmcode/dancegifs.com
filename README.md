@@ -1,7 +1,5 @@
 # DanceGifs.com
 
-https://karinmcode.github.io/dancestepgallery/
-
 # Overview
 The Dance Step Gallery is an interactive web application designed for dance enthusiasts and learners. This platform provides a rich collection of dance steps, showcasing various styles and origins from around the world. It serves as an educational and engaging resource for those looking to explore the diversity of dance.
 
