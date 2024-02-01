@@ -230,6 +230,40 @@ function updateGallery(filteredData) {
       }
     }
 
+    // Check if fashion value is not empty
+    if (item.fashion) {
+      // Split the fashion string into an array of URLs
+      const fashionUrls = item.fashion.split(';').filter(url => url.trim());
+
+      // Check the number of fashion URLs
+      if (fashionUrls.length === 1) {
+          // Create link for the single fashion item
+          const fashionLink = document.createElement('a');
+          fashionLink.href = fashionUrls[0].trim(); // Set link URL, trimming any extra whitespace
+          fashionLink.textContent = 'fashion'; // Set link text to "fashion"
+          fashionLink.target = '_blank'; // Open in a new tab
+          info.appendChild(fashionLink);// info.innerHTML
+      } else {
+          // Create a text node for "fashion" and append it
+          const fashionText = document.createTextNode('fashion ');
+          info.appendChild(fashionText);
+
+          // Iterate over each fashion URL
+          fashionUrls.forEach((url, index) => {
+              // Create link for each fashion number
+              const fashionLink = document.createElement('a');
+              fashionLink.href = url.trim(); // Set link URL, trimming any extra whitespace
+              fashionLink.textContent = `${index + 1}`; // Set link text to the number
+              fashionLink.target = '_blank'; // Open in a new tab
+              info.appendChild(fashionLink);
+
+              // Add comma after the link except for the last one
+              if (index < fashionUrls.length - 1) {
+                  info.appendChild(document.createTextNode(', '));
+              }
+          });
+      }
+    }
 
     // After appending all elements to `info`
     if (info.hasChildNodes()) {
