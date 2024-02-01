@@ -1,4 +1,4 @@
-const apiUrl = 'https://script.google.com/macros/s/AKfycbwNtaGkGiVER_YspzdmOaV9zQoIoOWGwanC36asECgykNvtWCKD9h2Yo_hBtRk4XJWk/exec';
+const apiUrl = 'https://script.google.com/macros/s/AKfycbxMm--N9oaQPW1Ssi-zalO7f7B24JCV7_ZuMMtkuhbxt2iDIfyMvRTgI10SqFegEgI/exec';
 
 const adCodeGallery = `
 <!-- Google AdSense Gallery Ad -->
