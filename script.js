@@ -248,6 +248,7 @@ function updateGallery(filteredData) {
     // Append the container to the gallery
     gallery.appendChild(container);
 
+    /*
     // GALLERY AD Check if it's the 4th item and not the last item, then insert the ad
     if ((index + 1) % 200 === 0 && (index + 1) !== filteredData.length) {
       const adContainer = document.createElement('div');
@@ -259,7 +260,7 @@ function updateGallery(filteredData) {
       adContainer.innerHTML = adCode;
       gallery.appendChild(adContainer);
     }
-
+    */
   };
 }
 
