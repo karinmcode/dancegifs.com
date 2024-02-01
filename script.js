@@ -230,35 +230,35 @@ function updateGallery(filteredData) {
       }
     }
 
-    // Check if fashion value is not empty
-    if (item.fashion) {
-      // Split the fashion string into an array of URLs
-      const fashionUrls = item.fashion.split(';').filter(url => url.trim());
+    // Check if shop value is not empty
+    if (item.shop) {
+      // Split the shop string into an array of URLs
+      const shopUrls = item.shop.split(';').filter(url => url.trim());
 
-      // Check the number of fashion URLs
-      if (fashionUrls.length === 1) {
-          // Create link for the single fashion item
-          const fashionLink = document.createElement('a');
-          fashionLink.href = fashionUrls[0].trim(); // Set link URL, trimming any extra whitespace
-          fashionLink.textContent = 'fashion'; // Set link text to "fashion"
-          fashionLink.target = '_blank'; // Open in a new tab
-          info.appendChild(fashionLink);// info.innerHTML
+      // Check the number of shop URLs
+      if (shopUrls.length === 1) {
+          // Create link for the single shop item
+          const shopLink = document.createElement('a');
+          shopLink.href = shopUrls[0].trim(); // Set link URL, trimming any extra whitespace
+          shopLink.textContent = 'shop'; // Set link text to "shop"
+          shopLink.target = '_blank'; // Open in a new tab
+          info.appendChild(shopLink);// info.innerHTML
       } else {
-          // Create a text node for "fashion" and append it
-          const fashionText = document.createTextNode('fashion ');
-          info.appendChild(fashionText);
+          // Create a text node for "shop" and append it
+          const shopText = document.createTextNode('shop ');
+          info.appendChild(shopText);
 
-          // Iterate over each fashion URL
-          fashionUrls.forEach((url, index) => {
-              // Create link for each fashion number
-              const fashionLink = document.createElement('a');
-              fashionLink.href = url.trim(); // Set link URL, trimming any extra whitespace
-              fashionLink.textContent = `${index + 1}`; // Set link text to the number
-              fashionLink.target = '_blank'; // Open in a new tab
-              info.appendChild(fashionLink);
+          // Iterate over each shop URL
+          shopUrls.forEach((url, index) => {
+              // Create link for each shop number
+              const shopLink = document.createElement('a');
+              shopLink.href = url.trim(); // Set link URL, trimming any extra whitespace
+              shopLink.textContent = `${index + 1}`; // Set link text to the number
+              shopLink.target = '_blank'; // Open in a new tab
+              info.appendChild(shopLink);
 
               // Add comma after the link except for the last one
-              if (index < fashionUrls.length - 1) {
+              if (index < shopUrls.length - 1) {
                   info.appendChild(document.createTextNode(', '));
               }
           });
