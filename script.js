@@ -1,4 +1,4 @@
-const apiUrl = 'https://script.google.com/macros/s/AKfycbxtxWx4kbupn1kdrNcB8z2yrUCrrvrqT5aC-t_vIUycScZ6t0OYgaAun6TY14fkMG0B/exec';
+const apiUrl = 'https://script.google.com/macros/s/AKfycbw9TolwzT1Jl1N_BfIOaF7C-xV1Omd53DWE0_eu-YwZGdXeBa6mmb-SHVvHwT2Jp9p0/exec';
 
 const adCodeGallery = `
 <!-- Google AdSense Gallery Ad -->
@@ -108,7 +108,12 @@ function updateGallery(filteredData) {
     // Create and append the step name
     const stepNameElement = document.createElement('span');
     stepNameElement.textContent = item.step;
-    stepNameElement.className = 'step-name'; // Add a class for styling
+    if (item.year){
+      stepNameElement.className = 'step-name' +'(' + item.year+')' ; // Add a class for styling
+    }else{
+      stepNameElement.className = 'step-name'  ; // Add a class for styling
+    }
+    stepNameElement.className = 'step-name' +'(' + item.year ; // Add a class for styling
     stepAndStyleContainer.appendChild(stepNameElement);
 
     // Create and append the style
