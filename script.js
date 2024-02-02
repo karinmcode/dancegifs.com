@@ -113,10 +113,24 @@ function updateGallery(filteredData) {
 
     // Create and append the style
     const styleElement = document.createElement('span');
-    styleElement.textContent = item.style + ' ' + getFlagEmoji(item.country);
+    styleElement.textContent = item.style;
     styleElement.className = 'style-name'; // Add a class for styling
+
+    // Create and append the FlagEmoji
+    const flagElement = document.createElement('span');
+    flagElement.textContent = getFlagEmoji(item.country);
+    flagElement.className = 'flag-emoji';
+    flagElement.title = item.country; // Set the title attribute to display the country name on hover
+
+    // Create a container for both style and FlagEmoji
+    const stepAndStyleContainer = document.createElement('div');
+    stepAndStyleContainer.className = 'step-style-container';
     stepAndStyleContainer.appendChild(styleElement);
+    stepAndStyleContainer.appendChild(flagElement);
+
+    // Append the container to the main container
     container.appendChild(stepAndStyleContainer);
+
 
     // Check if gifUrl is provided
     if (item.gifUrl) {
@@ -324,6 +338,7 @@ function getFlagEmoji(countryName) {
       'Kenya': '🇰🇪',
       'Cameroun': '🇨🇲',
       'Senegal': '🇸🇳',
+      'Togo':'🇹🇬',
 
       // Add more countries as needed
   };
