@@ -485,6 +485,22 @@ document.getElementById('creator').addEventListener('keypress', handleKeyPress);
 // Call this function when the page loads
 async function init() {
   const data = await populateMenuOptions();
+
+  // Set the default style you want to select
+  const defaultStyle = 'Amapiano';
+
+  // Get the style dropdown element
+  const styleSelect = document.getElementById('style');
+
+  // Loop through the options to find the index of the default style
+  for (let i = 0; i < styleSelect.options.length; i++) {
+    if (styleSelect.options[i].textContent === defaultStyle) {
+      styleSelect.selectedIndex = i; // Set the selected index to the default style
+      break;
+    }
+  }
+
+
   applyFilters(data);
 }
 
