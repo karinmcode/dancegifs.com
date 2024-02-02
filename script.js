@@ -107,13 +107,13 @@ function updateGallery(filteredData) {
 
     // Create and append the step name
     const stepNameElement = document.createElement('span');
-    stepNameElement.textContent = item.step;
     if (item.year){
-      stepNameElement.className = 'step-name' +'(' + item.year+')' ; // Add a class for styling
+      stepNameElement.textContent = item.step +' (' + item.year+')' ; // Add a class for styling
     }else{
-      stepNameElement.className = 'step-name'  ; // Add a class for styling
+      stepNameElement.textContent = item.step  ; // Add a class for styling
     }
-    stepNameElement.className = 'step-name' +'(' + item.year ; // Add a class for styling
+
+    stepNameElement.className = 'step-name'  ; // Add a class for styling
     stepAndStyleContainer.appendChild(stepNameElement);
 
     // Create and append the style
