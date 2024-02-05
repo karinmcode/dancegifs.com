@@ -266,6 +266,7 @@ function updateGallery(filteredData) {
               shopLink.target = '_blank'; // Open in a new tab
               info.appendChild(shopLink);
 
+
               // Add comma after the link except for the last one
               if (index < shopUrls.length - 1) {
                   info.appendChild(document.createTextNode(', '));
@@ -274,7 +275,8 @@ function updateGallery(filteredData) {
       }
     }
 
-    // After appending all elements to `info`
+    
+    // REMOVE TRAILING '|' After appending all elements to `info`
     if (info.hasChildNodes()) {
       let lastChild = info.lastChild;
 
@@ -283,6 +285,18 @@ function updateGallery(filteredData) {
           lastChild.textContent = lastChild.textContent.replace(/[ |]+$/, '');
       }
     }
+    
+
+    // EDIT STEP
+    const editLink = document.createElement('a');
+    editLink.href = generatePreFilledFormUrl(item); // Set link URL, trimming any extra whitespace
+    editLink.textContent = '| edit'; // Set link text to "shop"
+    editLink.target = '_blank'; // Open in a new tab
+    editLink.title = 'Click to edit this dance step.'; // Tooltip text that will appear on hover
+    info.appendChild(editLink);// info.innerHTML
+
+    // Append the edit button to the container or info element
+    info.appendChild(editLink);
 
     container.appendChild(info);
 
@@ -308,7 +322,56 @@ function updateGallery(filteredData) {
 }
 
 
+//Step	Style	Country	Gif Url	Gif Src	Videos	Tutorial	Creator	Creator Url	Year	Song	Shop	Comments
+// https://docs.google.com/forms/d/e/1FAIpQLSfK6ZAifSgM2K6HGxDn1Nt9pHCkz4N8IT5uufGm3yQKEeP7wA/
+/*
+viewform?usp=pp_url&
+entry.457585850=StepName&
+entry.1019167680=Sytle&
+entry.295619457=Country&
+entry.555782816=https://drive.google.com/thumbnail?id%3D10jUsZrpaAYG5dzv7SYcDN-zhQst_OMIN&
+entry.1809988814=https://www.youtube.com/watch?v%3DNzdE4jNnTxM&
+entry.257844052=Videos&
+entry.1583675624=Tutorial&
+entry.1908612392=Creator&
+entry.950651488=Creator+Url&
+entry.1499389267=Year&
+entry.820569580=Song&
+entry.74962114=Shop&
+entry.107256656=Comments
+*/
+function generatePreFilledFormUrl(item) {
+  const basePreFilledLink = "https://docs.google.com/forms/d/e/1FAIpQLSfK6ZAifSgM2K6HGxDn1Nt9pHCkz4N8IT5uufGm3yQKEeP7wA/viewform?usp=pp_url";
+  const stepNameEntry = "&entry.457585850=" + encodeURIComponent(item.step);
+  const styleEntry = "&entry.1019167680=" + encodeURIComponent(item.style);
+  const countryEntry = "&entry.295619457=" + encodeURIComponent(item.country);
+  const gifurlEntry = "&entry.555782816=" + encodeURIComponent(item.gifUrl);
+  const gifSourceEntry = "&entry.1809988814=" + encodeURIComponent(item.gifUrl);
+  let concatFields = basePreFilledLink + stepNameEntry + styleEntry + countryEntry + gifurlEntry + gifSourceEntry
 
+  if (item.videos){
+    const thisEntry = "&entry.257844052=" + encodeURIComponent(item.videos);
+    concatFields = concatFields+thisEntry
+  }
+  if (item.creator){
+    const thisEntry = "&entry.1908612392=" + encodeURIComponent(item.creator);
+    concatFields = concatFields+thisEntry
+  }
+  if (item.creatorLink){
+    const thisEntry = "&entry.950651488=" + encodeURIComponent(item.creatorLink);
+    concatFields = concatFields+thisEntry
+  }
+  if (item.year){
+    const thisEntry = "&entry.1499389267=" + encodeURIComponent(item.year);
+    concatFields = concatFields+thisEntry
+  }
+  if (item.song){
+    const thisEntry = "&entry.820569580=" + encodeURIComponent(item.song);
+    concatFields = concatFields+thisEntry
+  }
+
+  return concatFields; // Concatenate all fields
+}
 
 
 

@@ -1,3 +1,64 @@
+/* Base reset for navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+}
+
+.logo img {
+    height: 50px; /* Adjust based on your logo's size */
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.logo-and-title {
+    display: flex;
+    align-items: center;
+}
+
+.logo-and-title img {
+    height: 50px; /* Adjust based on your logo's size */
+}
+
+
+.site-title {
+    margin-left: 10px; /* Space between logo and text */
+    color: white; /* Text color */
+    font-size: 20px; /* Adjust the font size as needed */
+    font-family: 'Arial', sans-serif; /* Choose a font that fits your design */
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #007bff; /* Bright blue to highlight on hover */
+}
+
+/* Responsive adjustments might be needed for mobile views */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Hide nav links on smaller screens - consider a toggle button for mobile */
+    }
+    /* Add styles for mobile menu toggle button here */
+}
+
+
 body {
     font-family: Calibri, Helvetica, sans-serif; /* Fallback to Helvetica and sans-serif if Calibri is not available */
     text-align: center; /* Center align text */
