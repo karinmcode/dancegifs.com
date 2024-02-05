@@ -128,7 +128,7 @@ body {
 /* Style input fields and selects on focus */
 .filter-input input[type="text"]:focus,
 .filter-input select:focus {
-    border-color: #007bff;
+    border-color: #7c7c7c;
     outline: none;
 }
 

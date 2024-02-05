@@ -290,7 +290,7 @@ function updateGallery(filteredData) {
     // EDIT STEP
     const editLink = document.createElement('a');
     editLink.href = generatePreFilledFormUrl(item); // Set link URL, trimming any extra whitespace
-    editLink.textContent = '| edit'; // Set link text to "shop"
+    editLink.textContent = ' | edit'; // Set link text to "shop"
     editLink.target = '_blank'; // Open in a new tab
     editLink.title = 'Click to edit this dance step.'; // Tooltip text that will appear on hover
     info.appendChild(editLink);// info.innerHTML
