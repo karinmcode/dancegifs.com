@@ -105,6 +105,11 @@ body {
 
 
 /* Style labels for filter inputs */
+.filter-inputs {
+    display: flex;
+    flex-direction: row;
+  }
+
 .filter-input label {
     font-weight: bold;
 }
@@ -145,27 +150,31 @@ body {
     transform: scale(1.05);
 }
 
-/* Add a media query for mobile devices */
+/* Responsive adjustments for mobile views */
 @media (max-width: 768px) {
-    /* Stack filter elements vertically for screens up to 768px width */
+
     .filter-inputs {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    /* Adjust spacing between filter elements */
-    .filter-input {
-        margin-bottom: 10px;
-    }
-
-    /* Center-align buttons on mobile */
-    .filter-buttons {
         display: flex;
-        justify-content: center;
-        align-items: center;
         flex-direction: column;
+      }
+    
+      .filter-inputs label,
+      .filter-inputs input,
+      .filter-inputs select { /* If you are using <select> elements */
+        width: 100%; /* Make input and labels full width */
+        margin-bottom: 0.5em; /* Provide some spacing */
+      }
+
+    .filter-buttons {
+    display: flex; /* Always horizontal */
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allow wrapping if buttons overflow */
+    margin-top: 1em; /* Space between filter inputs and filter buttons */
     }
+
+
 }
+
 
 
 /*  --------------------------------------------------  */
