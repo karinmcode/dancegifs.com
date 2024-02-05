@@ -1,3 +1,5 @@
+
+
 /* Base reset for navbar */
 .navbar {
     display: flex;
@@ -8,10 +10,6 @@
     padding: 10px 20px;
 }
 
-.logo img {
-    height: 50px; /* Adjust based on your logo's size */
-}
-
 .nav-links {
     list-style: none;
     margin: 0;
@@ -19,22 +17,7 @@
     display: flex;
 }
 
-.logo-and-title {
-    display: flex;
-    align-items: center;
-}
 
-.logo-and-title img {
-    height: 50px; /* Adjust based on your logo's size */
-}
-
-
-.site-title {
-    margin-left: 10px; /* Space between logo and text */
-    color: white; /* Text color */
-    font-size: 20px; /* Adjust the font size as needed */
-    font-family: 'Arial', sans-serif; /* Choose a font that fits your design */
-}
 
 .nav-links li {
     margin-left: 20px;
@@ -58,7 +41,27 @@
     /* Add styles for mobile menu toggle button here */
 }
 
+/*  ----------------------------------------------- */
+/* LOGO AND TITLE */
+.logo img {
+    height: 40px; /* Adjust based on your logo's size */
+}
+.site-title{
+    display: flex;
+    margin-left: 20px;
+    font-size: 24px; /* Adjust the font size as needed */
+}
+.logo-and-title {
+    display: flex;
+    align-items: center;
+}
 
+.logo-and-title img {
+    height: 40px; /* Adjust based on your logo's size */
+}
+
+/*  ----------------------------------------------- */
+/* BODY */
 body {
     font-family: Calibri, Helvetica, sans-serif; /* Fallback to Helvetica and sans-serif if Calibri is not available */
     text-align: center; /* Center align text */
@@ -67,50 +70,90 @@ body {
     background-color: #f0f0f0; /* Light grey color */
 }
 
-title {
-    font-family: Calibri, Helvetica, sans-serif; /* Fallback to Helvetica and sans-serif if Calibri is not available */
-    text-align: center; /* Center align text */
-}
+/*  ----------------------------------------------- */
+/* FILTERS */
 
-/* Ensure Italic Font for 'database' Class */
-#database p {
-    font-style: italic;
-}
+/* Center-align the filter container */
 
-/* Style for the filter area */
 .filter {
     display: flex;
-    flex-direction: column; /* Stack child elements vertically */
-    align-items: center; /* Center align items in the container */
-    gap: 10px; /* Space between filter inputs and buttons */
-}
-
-/* Style for the filter inputs container */
-.filter-inputs {
-    display: flex;
-    flex-wrap: wrap; /* Allow elements to wrap */
-    gap: 5px; /* Space between filter inputs */
-    width: 90%; /* Take full width */
-    align-items: center; /* Center align items in the container */
-    justify-content: center; /* Center the buttons horizontally */
-
-}
-
-/* Style for the filter buttons container */
-.filter-buttons {
-    display: flex;
-    gap: 10px; /* Space between buttons */
-    margin-top: 5px; /* Add margin for spacing */
-    margin-right: 5px; /* Space between buttons */
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
 }
 
 
-.filter label,
-.filter select,
-.filter input {
-    margin-right: 5px;
-    margin-bottom: 10px; /* Add bottom margin for wrapping */
+/* Style labels for filter inputs */
+.filter-input label {
+    font-weight: bold;
 }
+
+/* Style input fields and selects */
+.filter-input input[type="text"],
+.filter-input select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+/* Style input fields and selects on focus */
+.filter-input input[type="text"]:focus,
+.filter-input select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Style filter buttons */
+.filter-buttons button {
+    background-color: #333; /* Dark grey background color */
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Style filter buttons on hover */
+.filter-buttons button:hover {
+    background-color: #555; /* Darker grey on hover */
+    transform: scale(1.05);
+}
+
+/* Add a media query for mobile devices */
+@media (max-width: 768px) {
+    /* Stack filter elements vertically for screens up to 768px width */
+    .filter-inputs {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Adjust spacing between filter elements */
+    .filter-input {
+        margin-bottom: 10px;
+    }
+
+    /* Center-align buttons on mobile */
+    .filter-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+
+/*  --------------------------------------------------  */
+/* GALLERY */
 
 #gallery {
     display: flex;
