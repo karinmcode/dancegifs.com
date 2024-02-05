@@ -125,3 +125,7 @@ title {
     text-decoration: underline; /* Underline on hover for better user experience */
 }
 
+.privacypolicy {
+    color: #555; /* A discrete, darker grey color */
+    text-align: center; /* Center align text */
+}
