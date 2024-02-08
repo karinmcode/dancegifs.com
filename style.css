@@ -114,6 +114,10 @@ body {
     font-weight: bold;
 }
 
+.filter-input input {
+    padding-right: 20px;
+}
+
 /* Style input fields and selects */
 .filter-input input[type="text"],
 .filter-input select {
