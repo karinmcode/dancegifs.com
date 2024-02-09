@@ -57,7 +57,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button onclick="applyFilters()">Apply Filters</button>
                     <button onclick="resetFilters()">Reset Filters</button>
                 </div>
-            </div>`;
+            </div>
+            
+            <!-- Call script to display Gifs -->
+            <script src="script.js"></script>`;
 
 
         // Insert based on the includeFilters flag
@@ -83,4 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Insert components into the page
     renderComponents();
+
+    
+
 });

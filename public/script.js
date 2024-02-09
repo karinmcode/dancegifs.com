@@ -18,6 +18,58 @@ const adCodeGallery = `
 </div>
 `;
 
+
+async function populateMenuOptions() {
+  try {
+    const data = await getData(); // Wait for data to be fetched
+
+    // Extract and sort unique countries
+    const countries = data.map(item => item.country)
+                          .filter((value, index, self) => value && self.indexOf(value) === index)
+                          .sort();
+
+    // Populate the 'country' dropdown
+    const countrySelect = document.getElementById('country');
+    countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = option.textContent = country;
+        countrySelect.appendChild(option);
+    });
+
+    // Extract and sort unique styles
+    const styles = data.map(item => item.style)
+                       .filter((value, index, self) => value && self.indexOf(value) === index)
+                       .sort();
+
+    // Populate the 'style' dropdown
+    const styleSelect = document.getElementById('style');
+    styles.forEach(style => {
+        const option = document.createElement('option');
+        option.value = option.textContent = style;
+        styleSelect.appendChild(option);
+    });
+
+    // Extract and sort unique creators
+    const creators = data.map(item => item.creator)
+                       .filter((value, index, self) => value && self.indexOf(value) === index)
+                       .sort();
+
+    // Populate the 'creator' dropdown
+    const creatorSelect = document.getElementById('creator');
+    creators.forEach(creator => {
+        const option = document.createElement('option');
+        option.value = option.textContent = creator;
+        creatorSelect.appendChild(option);
+    });
+
+    return data;
+
+  } catch (error) {
+    console.error('Error fetching or processing data:', error);
+  }
+}
+
+
 async function applyFilters(dataInput = null) {
   // Get the filter values
   const stepName = document.getElementById('stepName').value.toLowerCase();
@@ -444,55 +496,6 @@ function getData(){
 
 
 
-async function populateMenuOptions() {
-  try {
-    const data = await getData(); // Wait for data to be fetched
-
-    // Extract and sort unique countries
-    const countries = data.map(item => item.country)
-                          .filter((value, index, self) => value && self.indexOf(value) === index)
-                          .sort();
-
-    // Populate the 'country' dropdown
-    const countrySelect = document.getElementById('country');
-    countries.forEach(country => {
-        const option = document.createElement('option');
-        option.value = option.textContent = country;
-        countrySelect.appendChild(option);
-    });
-
-    // Extract and sort unique styles
-    const styles = data.map(item => item.style)
-                       .filter((value, index, self) => value && self.indexOf(value) === index)
-                       .sort();
-
-    // Populate the 'style' dropdown
-    const styleSelect = document.getElementById('style');
-    styles.forEach(style => {
-        const option = document.createElement('option');
-        option.value = option.textContent = style;
-        styleSelect.appendChild(option);
-    });
-
-    // Extract and sort unique creators
-    const creators = data.map(item => item.creator)
-                       .filter((value, index, self) => value && self.indexOf(value) === index)
-                       .sort();
-
-    // Populate the 'creator' dropdown
-    const creatorSelect = document.getElementById('creator');
-    creators.forEach(creator => {
-        const option = document.createElement('option');
-        option.value = option.textContent = creator;
-        creatorSelect.appendChild(option);
-    });
-
-    return data;
-
-  } catch (error) {
-    console.error('Error fetching or processing data:', error);
-  }
-}
 
 function transformGoogleDriveURL(url) {
   const baseUrl = "https://drive.google.com/thumbnail?id=";
@@ -542,13 +545,6 @@ function handleKeyPress(event) {
   }
 }
 
-// Add event listeners to input fields
-document.getElementById('stepName').addEventListener('keypress', handleKeyPress);
-document.getElementById('style').addEventListener('keypress', handleKeyPress);
-document.getElementById('country').addEventListener('keypress', handleKeyPress);
-document.getElementById('creator').addEventListener('keypress', handleKeyPress);
-
-
 
 
 
@@ -557,6 +553,12 @@ document.getElementById('creator').addEventListener('keypress', handleKeyPress);
 // Call this function when the page loads
 async function init() {
   const data = await populateMenuOptions();
+
+  // Add event listeners within init to ensure elements are available
+  document.getElementById('stepName').addEventListener('keypress', handleKeyPress);
+  document.getElementById('style').addEventListener('keypress', handleKeyPress);
+  document.getElementById('country').addEventListener('keypress', handleKeyPress);
+  document.getElementById('creator').addEventListener('keypress', handleKeyPress);
 
   // Set the default style you want to select
   const defaultStyle = 'Amapiano';
@@ -572,8 +574,18 @@ async function init() {
     }
   }
 
-
   applyFilters(data);
+
+  // Ensure init is called once the DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', init);
+
 }
 
-init(); // Execute the init function to start the application
+// Check if the DOMContentLoaded event has already been fired
+if (document.readyState === "complete" || document.readyState === "interactive") {
+  // Document is already ready to go, call init directly
+  init();
+} else {
+  // Wait for the document to be ready
+  document.addEventListener('DOMContentLoaded', init);
+}
