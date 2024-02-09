@@ -36,6 +36,14 @@ function insertNavbarAndFilters() {
                 <span class="site-title">dancegifs.com</span>
             </div>
             <button class="mobile-toggle" onclick="toggleNav()">☰</button>
+
+            <div class="dropdown-content">
+                <a href="/">Home</a>
+                <a href="https://forms.gle/mzy3RA9YncWPNvD19" target="_blank">Submit a GIF</a>
+                <a href="/about.html">About</a>
+                <a href="https://forms.gle/fVt2piGFEk1UcwqDA" target="_blank">Contact</a>
+            </div>
+
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="https://forms.gle/mzy3RA9YncWPNvD19" target="_blank">Submit a GIF</a></li>
@@ -95,9 +103,10 @@ function insertNavbarAndFilters() {
 
 // Toggle navigation for mobile view
 window.toggleNav = function() {
-    var navLinks = document.querySelector(".nav-links");
-    navLinks.style.display = (navLinks.style.display === "block") ? "none" : "block";
+    var dropdown = document.querySelector(".dropdown-content");
+    dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
 };
+
 
 
 
@@ -660,6 +669,17 @@ async function initFilters() {
 document.addEventListener('DOMContentLoaded', function() {
 
     insertNavbarAndFilters();
+
+    document.querySelector('.nav-links').addEventListener('click', function() {
+      var dropdown = document.querySelector('.dropdown-content');
+      if (dropdown.style.display === "block") {
+          dropdown.style.display = "none";
+      } else {
+          dropdown.style.display = "block";
+      }
+    });
+
+
     var includeFilters = window.includeFilters; // Default to false if undefined
     if (includeFilters){
     initFilters(); 

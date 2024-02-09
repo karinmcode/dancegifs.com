@@ -17,8 +17,6 @@
     display: flex;
 }
 
-
-
 .nav-links li {
     margin-left: 20px;
 }
@@ -37,25 +35,62 @@
 /* CSS for the mobile navigation toggle button */
 .mobile-toggle {
     display: none; /* Initially hide the toggle button */
-    cursor: pointer;
     font-size: 20px;
     color: #fff; /* Button color */
     background-color: #333; /* Button background color */
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
+    position: absolute;
+    right: 0; /* Align to the right */
+    top: 0; /* Align to the top */
+
+}
+
+/* Hide dropdown links */
+.dropdown-content {
+    display: none;
+    top:60px;
+    position: absolute;
+    right:0;
+    background-color: hsl(0, 0%, 86%);
+    min-width: 140px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+/* Style for dropdown links */
+.dropdown-content a {
+    color: black;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Add hover effect */
+.dropdown-content a:hover {
+    background-color: #474747; /* Light grey background */
+    color: #eeeeee; /* Darker text color */
 }
 
 /* Show the toggle button on small screens */
-@media (max-width: 768px) {
-    .nav-links {
+@media screen and (max-width: 600px) {
+    .nav-links{
         display: none; /* Hide the regular navigation links */
     }
 
     .mobile-toggle {
-        display: block; /* Display the toggle button */
+        display: block; /* Show hamburger menu button if mobile screen */
+    }
+
+    .dropdown-content {
+        display: none; 
+    }
+}else{
+    .dropdown-content {
+        display: none; 
     }
 }
+
 
 /*  ----------------------------------------------- */
 /* LOGO AND TITLE */
