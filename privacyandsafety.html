@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About DanceGifs.com</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+    <title>DanceGifs.com - Security and Privacy</title>
+ 
+
+
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo-and-title">
+            <img src="logo.png" alt="Logo" style="height: 40px;"> <!-- Adjust the logo's height as needed -->
+            <span class="site-title">dancegifs.com</span>
+        </div>
+        <button class="mobile-toggle" onclick="toggleNav()">☰</button>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="https://forms.gle/mzy3RA9YncWPNvD19" target="_blank">Submit a GIF</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="https://forms.gle/fVt2piGFEk1UcwqDA" target="_blank">Contact</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        function toggleNav() {
+            var navLinks = document.querySelector(".nav-links");
+            navLinks.style.display = (navLinks.style.display === "block") ? "none" : "block";
+        }
+    </script>
+
+
+    <div class="filter">
+        <!-- Container for filter inputs -->
+        <div class="filter-inputs">
+            <label for="stepName">Step Name</label>
+            <input type="text" id="stepName" placeholder="Enter Step Name"  onchange="applyFilters()">
+
+            <label for="style">Style</label>
+            <select id="style"  onchange="applyFilters()">
+                <option value="">Select Style</option>
+                <!-- Style options will be populated here -->
+            </select>
+
+            <label for="country">Country</label>
+            <select id="country"   onchange="applyFilters()">
+                <option value="">Select Country</option>
+                <!-- Country options will be populated dynamically -->
+            </select>
+
+            <label for="creator">Creator</label>
+            <select id="creator"   onchange="applyFilters()">
+                <option value="">Select Creator</option>
+                <!-- Creator options will be populated dynamically -->
+            </select>
+
+            <!-- Sort By dropdown menu -->
+            <label for="sortBy">Sort By</label>
+            <select id="sortBy"   onchange="applyFilters()">
+                <option value="">Select Sorting</option>
+                <option value="stepName">Step Name</option>
+                <option value="style">Style</option>
+                <option value="country">Country</option>
+                <option value="hasGif">Has Gif</option>
+                <option value="hasVideo">Has Video</option>
+                <option value="hasTutorial">Has Tutorial</option>
+                <option value="creator">Creator</option>
+                <!-- Add more sorting options if needed -->
+            </select>
+        </div>
+        
+        <!-- Container for buttons -->
+        <div class="filter-buttons">
+            <button onclick="applyFilters()">Apply Filters</button>
+            <button onclick="resetFilters()">Reset Filters</button> <!-- Reset Filters button -->
+   
+        </div>
+    </div>
+
+    
+    <!-- EZOIC AD - under_first_paragraph - under_first_paragraph -->
+    <div id="ezoic-pub-ad-placeholder-103"> </div>
+    <!-- End Ezoic - under_first_paragraph - under_first_paragraph -->
+
+    <!-- GOOGLE TOP AD -->
+    <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1258549624357094"
+    crossorigin="anonymous"></script>-->
+    <!-- top ad -->
+    <!-- <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-1258549624357094"
+        data-ad-slot="4484881742"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script> 
+    -->
+
+
+    
+    <!-- Call script to display Gifs -->
+    <script src="script.js"></script>
+
+
+    <main>
+        <div class="container">
+            <div class="section">
+              <h1>User Terms of Service</h1>
+              <h2>1. Acceptance of Terms</h2>
+              <p>Welcome to DanceGifs.com, a vibrant community dedicated to dance enthusiasts and GIF lovers alike. By accessing or using our website, you agree to be bound by these Terms of Service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site.</p>
+              
+              <h2>2. User Contributions</h2>
+              <p>Users retain ownership of the content they submit, post, display, or otherwise make available on DanceGifs.com. However, by submitting content, you grant DanceGifs.com a non-exclusive, worldwide, royalty-free, sublicensable, and transferable license to use, reproduce, distribute, prepare derivative works of, display, and perform the submissions in connection with the website's business.</p>
+              
+              <h2>3. User Responsibilities</h2>
+              <p>You affirm, represent, and warrant that you own or have the necessary licenses, rights, consents, and permissions to publish content you submit.</p>
+              
+              <h2>4. Prohibited Conduct</h2>
+              <p>You agree not to engage in the use, copying, or distribution of any of the content other than expressly permitted herein, including any use, copying, or distribution of submissions of third parties obtained through the website for any commercial purposes.</p>
+            </div>
+            
+            <div class="section">
+              <h1>Privacy Policy</h1>
+              <h2>1. Information Collection and Use</h2>
+              <p>DanceGifs.com is committed to safeguarding your privacy. This Privacy Policy outlines our practices concerning the collection, use, and disclosure of your information when you use our website.</p>
+              
+              <h2>2. Use of Data</h2>
+              <p>DanceGifs.com uses the collected data for various purposes, including to provide and maintain our service, to notify you about changes to our service, and to provide customer support.</p>
+              
+              <h2>3. Sharing Your Data</h2>
+              <p>We do not sell, trade, or rent your personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information regarding visitors and users with our business partners, trusted affiliates, and advertisers for the purposes outlined above.</p>
+            </div>
+            
+            <div class="section">
+              <h1>Copyright Policy</h1>
+              <h2>1. Copyright Complaints</h2>
+              <p>DanceGifs.com respects the intellectual property rights of others and expects its users to do the same. It is our policy to respond promptly to claims of copyright infringement committed using the DanceGifs.com web platform.</p>
+              
+              <h2>2. Takedown Process</h2>
+              <p>Upon receipt of a valid infringement notification, DanceGifs.com will promptly remove or disable access to the allegedly infringing content and take reasonable steps to notify the user who posted it on the website.</p>
+                <h3>Procedure for Submitting Copyright Infringement Claims</h3>
+                <p>If you suspect that content hosted on or made available via our website or services violates your copyright, we encourage you to inform us via the <a href="https://forms.gle/fVt2piGFEk1UcwqDA">contact form</a> using the details provided below. Your notification should include the following essential information:</p>
+                <ul>
+                    <li>The physical or digital signature of an individual authorized to represent the owner of the copyright in question.</li>
+                    <li>A clear identification of the copyrighted works or materials that you claim have been infringed upon.</li>
+                    <li>Detailed information about the content you claim is infringing, including its location on our website or service, to allow us to locate and verify its presence.</li>
+                    <li>Your contact details, including your address, telephone number, and an email address if available, so we can reach you regarding your claim.</li>
+                    <li>A declaration that you believe in good faith that the disputed use of the material is not authorized by the copyright owner, its legal agent, or the law.</li>
+                    <li>A statement, under penalty of perjury, that the information in your notification is accurate and that you are authorized to act on behalf of the copyright owner.</li>
+                </ul>
+                <p>Upon receiving a notice that complies with the above, we will take the necessary steps to remove the identified material and make an effort to notify the user who posted it, provided we have their contact information.</p>
+            </div>
+          </div>
+    </main>
+
+    <footer>
+        <!-- Privacy And Safety Policy -->
+        <p>  <a href="privacyandsafety.html" target="_blank">Privacy and Safety</a>
+        </p>
+    </footer>
+</body>
+</html>
