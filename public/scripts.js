@@ -1,3 +1,5 @@
+// VARIABLES
+
 const apiUrl = 'https://script.google.com/macros/s/AKfycbw9TolwzT1Jl1N_BfIOaF7C-xV1Omd53DWE0_eu-YwZGdXeBa6mmb-SHVvHwT2Jp9p0/exec';
 
 const adCodeGallery = `
@@ -17,6 +19,98 @@ const adCodeGallery = `
 </script>
 </div>
 `;
+
+
+// -------------------------------------------------
+// MAKE NAV BAR AND FILTERS FRONTEND
+
+
+function insertNavbarAndFilters() {
+    var includeFilters = window.includeFilters; // Default to false if undefined
+
+    // Navbar HTML
+    var navbarHtml = `
+        <nav class="navbar">
+            <div class="logo-and-title">
+                <img src="logo.png" alt="Logo" style="height: 40px;">
+                <span class="site-title">dancegifs.com</span>
+            </div>
+            <button class="mobile-toggle" onclick="toggleNav()">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="https://forms.gle/mzy3RA9YncWPNvD19" target="_blank">Submit a GIF</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="https://forms.gle/fVt2piGFEk1UcwqDA" target="_blank">Contact</a></li>
+            </ul>
+        </nav>`;
+
+    // Filters HTML
+    var filtersHtml = `
+        <div class="filter">
+            <div class="filter-inputs">
+                <label for="stepName">Step Name</label>
+                <input type="text" id="stepName" placeholder="Enter Step Name" onchange="applyFilters()">
+                <label for="style">Style</label>
+                <select id="style" onchange="applyFilters()">
+                    <option value="">Select Style</option>
+                    <!-- Style options will be populated here -->
+                </select>
+                <label for="country">Country</label>
+                <select id="country" onchange="applyFilters()">
+                    <option value="">Select Country</option>
+                    <!-- Country options will be populated dynamically -->
+                </select>
+                <label for="creator">Creator</label>
+                <select id="creator" onchange="applyFilters()">
+                    <option value="">Select Creator</option>
+                    <!-- Creator options will be populated dynamically -->
+                </select>
+                <label for="sortBy">Sort By</label>
+                <select id="sortBy" onchange="applyFilters()">
+                    <option value="">Select Sorting</option>
+                    <option value="stepName">Step Name</option>
+                    <option value="style">Style</option>
+                    <option value="country">Country</option>
+                    <option value="hasGif">Has Gif</option>
+                    <option value="hasNoGif">Has No Gif</option>
+                    <option value="hasVideo">Has Video</option>
+                    <option value="hasTutorial">Has Tutorial</option>
+                    <option value="creator">Creator</option>
+                </select>
+            </div>
+            <div class="filter-buttons">
+                <button onclick="applyFilters()">Apply Filters</button>
+                <button onclick="resetFilters()">Reset Filters</button>
+            </div>
+        </div>`;
+
+
+    // Insert based on the includeFilters flag
+    const combinedHtml = includeFilters ? navbarHtml + filtersHtml : navbarHtml;
+    document.body.insertAdjacentHTML('afterbegin', combinedHtml);
+}
+
+
+  
+
+// Toggle navigation for mobile view
+window.toggleNav = function() {
+    var navLinks = document.querySelector(".nav-links");
+    navLinks.style.display = (navLinks.style.display === "block") ? "none" : "block";
+};
+
+
+
+
+
+
+
+
+
+
+
+// -------------------------------------------------
+// EXECUTE FILTERS FUNCTIONS
 
 
 async function populateMenuOptions() {
@@ -77,7 +171,6 @@ async function applyFilters(dataInput = null) {
   const country = document.getElementById('country').value;
   const creator = document.getElementById('creator').value;
   const sortBy = document.getElementById('sortBy').value;
-
   try {
     // Fetch data from Google Sheets if not provided as input
     const data = dataInput || await getData();
@@ -124,7 +217,6 @@ async function applyFilters(dataInput = null) {
       });
     }
 
-
     // Update the gallery with the filtered data
     updateGallery(filteredData);
 
@@ -144,6 +236,18 @@ async function applyFilters(dataInput = null) {
 
 
 
+
+
+function resetFilters() {
+  document.getElementById('stepName').value = '';
+  document.getElementById('style').selectedIndex = 0;
+  document.getElementById('country').selectedIndex = 0;
+  document.getElementById('creator').selectedIndex = 0;
+  document.getElementById('sortBy').selectedIndex = 0;
+
+  // Optionally, re-apply filters to update the gallery
+  applyFilters();
+}
 
 
 function updateGallery(filteredData) {
@@ -467,20 +571,6 @@ function getFlagEmoji(countryName) {
 
 
 
-
-
-// for debugging
-function dispData(){
-  fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data); // Process and display your data here
-    })
-    .catch(error => console.error('Error Code Karin:', error));
-
-}
-
-
 function getData(){
   return fetch(apiUrl)
     .then(response => {
@@ -521,18 +611,6 @@ function transformGoogleDriveURL(url) {
 
 
 
-function resetFilters() {
-  document.getElementById('stepName').value = '';
-  document.getElementById('style').selectedIndex = 0;
-  document.getElementById('country').selectedIndex = 0;
-  document.getElementById('creator').selectedIndex = 0;
-  document.getElementById('sortBy').selectedIndex = 0;
-
-  // Optionally, re-apply filters to update the gallery
-  applyFilters();
-}
-
-
 
 
 
@@ -551,7 +629,7 @@ function handleKeyPress(event) {
 
 
 // Call this function when the page loads
-async function init() {
+async function initFilters() {
   const data = await populateMenuOptions();
 
   // Add event listeners within init to ensure elements are available
@@ -573,19 +651,19 @@ async function init() {
       break;
     }
   }
-
+  
   applyFilters(data);
 
-  // Ensure init is called once the DOM is fully loaded
-  document.addEventListener('DOMContentLoaded', init);
 
 }
 
-// Check if the DOMContentLoaded event has already been fired
-if (document.readyState === "complete" || document.readyState === "interactive") {
-  // Document is already ready to go, call init directly
-  init();
-} else {
-  // Wait for the document to be ready
-  document.addEventListener('DOMContentLoaded', init);
-}
+document.addEventListener('DOMContentLoaded', function() {
+
+    insertNavbarAndFilters();
+    var includeFilters = window.includeFilters; // Default to false if undefined
+    if (includeFilters){
+    initFilters(); 
+    }
+});
+
+
