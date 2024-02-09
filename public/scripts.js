@@ -42,6 +42,7 @@ function insertNavbarAndFilters() {
                 <a href="https://forms.gle/mzy3RA9YncWPNvD19" target="_blank">Submit a GIF</a>
                 <a href="/about.html">About</a>
                 <a href="https://forms.gle/fVt2piGFEk1UcwqDA" target="_blank">Contact</a>
+                <a href="/share.html">Share</a>
             </div>
 
             <ul class="nav-links">
@@ -49,6 +50,7 @@ function insertNavbarAndFilters() {
                 <li><a href="https://forms.gle/mzy3RA9YncWPNvD19" target="_blank">Submit a GIF</a></li>
                 <li><a href="/about.html">About</a></li>
                 <li><a href="https://forms.gle/fVt2piGFEk1UcwqDA" target="_blank">Contact</a></li>
+                <li><a href="/share.html">Share</a></li>
             </ul>
         </nav>`;
 
