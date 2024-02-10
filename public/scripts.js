@@ -397,7 +397,7 @@ function updateGallery(filteredData) {
 
         // Get the input field value (shop link)
         const shopLink = inputField.value.trim();
-        debugger
+        
         // Check if the shop link is not empty
         if (shopLink !== '') {
           // Get the step name from the stepNameElement
