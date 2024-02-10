@@ -1,5 +1,4 @@
 // VARIABLES
-
 const apiUrl = 'https://script.google.com/macros/s/AKfycbw9TolwzT1Jl1N_BfIOaF7C-xV1Omd53DWE0_eu-YwZGdXeBa6mmb-SHVvHwT2Jp9p0/exec';
 
 const adCodeGallery = `
