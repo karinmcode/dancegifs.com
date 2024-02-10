@@ -1,6 +1,5 @@
 // VARIABLES
-const apiUrl = 'https://script.google.com/macros/s/AKfycbw9TolwzT1Jl1N_BfIOaF7C-xV1Omd53DWE0_eu-YwZGdXeBa6mmb-SHVvHwT2Jp9p0/exec';
-
+const apiUrl = 'https://script.google.com/macros/s/AKfycbx0P1RNkdAQGgfBWJRRgtQM4ntv79d7wY93t2dD0RcDPLIhHWuKWxZWmDZYdhmOCqet/exec';
 const adCodeGallery = `
 <!-- Google AdSense Gallery Ad -->
 <div class="ad-container">
@@ -25,10 +24,10 @@ const adCodeGallery = `
 
 
 function insertNavbarAndFilters() {
-    var includeFilters = window.includeFilters; // Default to false if undefined
+  var includeFilters = window.includeFilters; // Default to false if undefined
 
-    // Navbar HTML
-    var navbarHtml = `
+  // Navbar HTML
+  var navbarHtml = `
         <nav class="navbar">
             <div class="logo-and-title">
                 <img src="logo.png" alt="Logo" style="height: 40px;">
@@ -53,8 +52,8 @@ function insertNavbarAndFilters() {
             </ul>
         </nav>`;
 
-    // Filters HTML
-    var filtersHtml = `
+  // Filters HTML
+  var filtersHtml = `
         <div class="filter">
             <div class="filter-inputs">
                 <label for="stepName">Step Name</label>
@@ -94,18 +93,18 @@ function insertNavbarAndFilters() {
         </div>`;
 
 
-    // Insert based on the includeFilters flag
-    const combinedHtml = includeFilters ? navbarHtml + filtersHtml : navbarHtml;
-    document.body.insertAdjacentHTML('afterbegin', combinedHtml);
+  // Insert based on the includeFilters flag
+  const combinedHtml = includeFilters ? navbarHtml + filtersHtml : navbarHtml;
+  document.body.insertAdjacentHTML('afterbegin', combinedHtml);
 }
 
 
-  
+
 
 // Toggle navigation for mobile view
-window.toggleNav = function() {
-    var dropdown = document.querySelector(".dropdown-content");
-    dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
+window.toggleNav = function () {
+  var dropdown = document.querySelector(".dropdown-content");
+  dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
 };
 
 
@@ -129,41 +128,41 @@ async function populateMenuOptions() {
 
     // Extract and sort unique countries
     const countries = data.map(item => item.country)
-                          .filter((value, index, self) => value && self.indexOf(value) === index)
-                          .sort();
+      .filter((value, index, self) => value && self.indexOf(value) === index)
+      .sort();
 
     // Populate the 'country' dropdown
     const countrySelect = document.getElementById('country');
     countries.forEach(country => {
-        const option = document.createElement('option');
-        option.value = option.textContent = country;
-        countrySelect.appendChild(option);
+      const option = document.createElement('option');
+      option.value = option.textContent = country;
+      countrySelect.appendChild(option);
     });
 
     // Extract and sort unique styles
     const styles = data.map(item => item.style)
-                       .filter((value, index, self) => value && self.indexOf(value) === index)
-                       .sort();
+      .filter((value, index, self) => value && self.indexOf(value) === index)
+      .sort();
 
     // Populate the 'style' dropdown
     const styleSelect = document.getElementById('style');
     styles.forEach(style => {
-        const option = document.createElement('option');
-        option.value = option.textContent = style;
-        styleSelect.appendChild(option);
+      const option = document.createElement('option');
+      option.value = option.textContent = style;
+      styleSelect.appendChild(option);
     });
 
     // Extract and sort unique creators
     const creators = data.map(item => item.creator)
-                       .filter((value, index, self) => value && self.indexOf(value) === index)
-                       .sort();
+      .filter((value, index, self) => value && self.indexOf(value) === index)
+      .sort();
 
     // Populate the 'creator' dropdown
     const creatorSelect = document.getElementById('creator');
     creators.forEach(creator => {
-        const option = document.createElement('option');
-        option.value = option.textContent = creator;
-        creatorSelect.appendChild(option);
+      const option = document.createElement('option');
+      option.value = option.textContent = creator;
+      creatorSelect.appendChild(option);
     });
 
     return data;
@@ -188,9 +187,9 @@ async function applyFilters(dataInput = null) {
     // Filter the data based on the selected filter values
     let filteredData = data.filter(item => {
       return (stepName === '' || item.step.toLowerCase().includes(stepName)) &&
-             (style === '' || item.style === style) &&
-             (creator === '' || item.creator === creator) &&
-             (country === '' || item.country === country);
+        (style === '' || item.style === style) &&
+        (creator === '' || item.creator === creator) &&
+        (country === '' || item.country === country);
     });
 
     // Sort the filtered data
@@ -265,7 +264,7 @@ function updateGallery(filteredData) {
   gallery.innerHTML = ''; // Clear existing content
 
   const adCode = adCodeGallery;
-  
+
   for (let index = 0; index < filteredData.length; index++) {
     const item = filteredData[index];
 
@@ -279,13 +278,13 @@ function updateGallery(filteredData) {
 
     // Create and append the step name
     const stepNameElement = document.createElement('span');
-    if (item.year){
-      stepNameElement.textContent = item.step +' (' + item.year+')' ; // Add a class for styling
-    }else{
-      stepNameElement.textContent = item.step  ; // Add a class for styling
+    if (item.year) {
+      stepNameElement.textContent = item.step + ' (' + item.year + ')'; // Add a class for styling
+    } else {
+      stepNameElement.textContent = item.step; // Add a class for styling
     }
 
-    stepNameElement.className = 'step-name'  ; // Add a class for styling
+    stepNameElement.className = 'step-name'; // Add a class for styling
     stepAndStyleContainer.appendChild(stepNameElement);
 
     // Create and append the style
@@ -314,171 +313,126 @@ function updateGallery(filteredData) {
 
     // Check if gifSrc value is not empty
     if (item.gifSrc) {
-        // Create link for gifSrc
-        const gifSrcLink = document.createElement('a');
-        gifSrcLink.href = item.gifSrc; // Set link URL
-        gifSrcLink.textContent = 'source'; // Set link text
-        gifSrcLink.target = '_blank'; // Open in a new tab
-        info.appendChild(gifSrcLink);
-        info.appendChild(document.createTextNode('  |  ')); // Add space
+      // Create link for gifSrc
+      const gifSrcLink = document.createElement('a');
+      gifSrcLink.href = item.gifSrc; // Set link URL
+      gifSrcLink.textContent = 'source'; // Set link text
+      gifSrcLink.target = '_blank'; // Open in a new tab
+      info.appendChild(gifSrcLink);
+      info.appendChild(document.createTextNode('  |  ')); // Add space
     }
 
     // Check if tutorial value is not empty
     if (item.tutorial) {
-      // Split the tutorial string into an array of URLs
-      const tutorialUrls = item.tutorial.split(';');
-
-      // Create a text node for "tutorial" and append it
-      const tutorialText = document.createTextNode('tutorial ');
-      info.appendChild(tutorialText);
-
-      // Iterate over each tutorial URL
-      tutorialUrls.forEach((url, index) => {
-        if (url.trim()) { // Check if the URL is not just whitespace
-            // Create link for each tutorial number
-            const tutorialLink = document.createElement('a');
-            tutorialLink.href = url.trim(); // Set link URL, trimming any extra whitespace
-            tutorialLink.textContent = `${index + 1}`; // Set link text to the number
-            tutorialLink.target = '_blank'; // Open in a new tab
-            info.appendChild(tutorialLink);
-
-            // Add comma after the link except for the last one, four spaces for the last one
-            if (index < tutorialUrls.length - 1) {
-                info.appendChild(document.createTextNode(', '));
-            } else {
-                info.appendChild(document.createTextNode('  |  ')); // Add space
-            }
-        }
-      });
+      appendLinks(info, item.tutorial, 'tutorial');
     }
 
     // Check if song value is not empty
     if (item.song) {
-      // Create link for tutorial
-      const songLink = document.createElement('a');
-      songLink.href = item.song; // Set link URL
-      songLink.textContent = 'song'; // Set link text
-      songLink.target = '_blank'; // Open in a new tab
-      info.appendChild(songLink);
-      info.appendChild(document.createTextNode('  |  ')); // Add space
+      appendLinks(info, item.song, 'song');
     }
 
     // Check if creator value is not empty
     if (item.creator) {
-      // Create link for creator
-      const creatorLink = document.createElement('a');
-      creatorLink.href = item.creatorUrl; // Set link URL
-      creatorLink.textContent = 'by '+item.creator; // Set link text
-      creatorLink.target = '_blank'; // Open in a new tab
-      info.appendChild(creatorLink);
-      info.appendChild(document.createTextNode('  |  ')); // Add space
+      appendLinks(info, item.creatorUrl, 'by ' + item.creator);
     }
 
     // Check if videos value is not empty
     if (item.videos) {
-      // Split the videos string into an array of URLs
-      const videoUrls = item.videos.split(';').filter(url => url.trim());
-
-      // Check the number of video URLs
-      if (videoUrls.length === 1) {
-          // Create link for the single video
-          const videoLink = document.createElement('a');
-          videoLink.href = videoUrls[0].trim(); // Set link URL, trimming any extra whitespace
-          videoLink.textContent = 'video'; // Set link text to "video"
-          videoLink.target = '_blank'; // Open in a new tab
-          info.appendChild(videoLink);// info.innerHTML
-      } else {
-          // Create a text node for "video" and append it
-          const videoText = document.createTextNode('video ');
-          info.appendChild(videoText);
-
-          // Iterate over each video URL
-          videoUrls.forEach((url, index) => {
-              // Create link for each video number
-              const videoLink = document.createElement('a');
-              videoLink.href = url.trim(); // Set link URL, trimming any extra whitespace
-              videoLink.textContent = `${index + 1}`; // Set link text to the number
-              videoLink.target = '_blank'; // Open in a new tab
-              info.appendChild(videoLink);
-
-              // Add comma after the link except for the last one
-              if (index < videoUrls.length - 1) {
-                  info.appendChild(document.createTextNode(', '));
-              }
-          });
-      }
+      appendLinks(info, item.videos, 'video');
     }
 
     // Check if shop value is not empty
     if (item.shop) {
-      // Split the shop string into an array of URLs
-      const shopUrls = item.shop.split(';').filter(url => url.trim());
-
-      // Check the number of shop URLs
-      if (shopUrls.length === 1) {
-          // Create link for the single shop item
-          const shopLink = document.createElement('a');
-          shopLink.href = shopUrls[0].trim(); // Set link URL, trimming any extra whitespace
-          shopLink.textContent = 'shop'; // Set link text to "shop"
-          shopLink.target = '_blank'; // Open in a new tab
-          info.appendChild(shopLink);// info.innerHTML
-      } else {
-          // Create a text node for "shop" and append it
-          const shopText = document.createTextNode('shop ');
-          info.appendChild(shopText);
-
-          // Iterate over each shop URL
-          shopUrls.forEach((url, index) => {
-              // Create link for each shop number
-              const shopLink = document.createElement('a');
-              shopLink.href = url.trim(); // Set link URL, trimming any extra whitespace
-              shopLink.textContent = `${index + 1}`; // Set link text to the number
-              shopLink.target = '_blank'; // Open in a new tab
-              info.appendChild(shopLink);
-
-
-              // Add comma after the link except for the last one
-              if (index < shopUrls.length - 1) {
-                  info.appendChild(document.createTextNode(', '));
-              }
-          });
-      }
+      appendLinks(info, item.shop, 'shop');
     }
 
-    
-    // REMOVE TRAILING '|' After appending all elements to `info`
-    if (info.hasChildNodes()) {
-      let lastChild = info.lastChild;
-
-      // Additionally check for trailing '|'
-      if (lastChild && lastChild.nodeType === Node.TEXT_NODE) {
-          lastChild.textContent = lastChild.textContent.replace(/[ |]+$/, '');
-      }
-    }
-    
 
     // EDIT STEP
     const editLink = document.createElement('a');
     editLink.href = generatePreFilledFormUrl(item); // Set link URL, trimming any extra whitespace
-    if (info.lastChild !== null) {
-      info.appendChild(document.createTextNode(' | '));
-    }
     editLink.textContent = 'edit';
     editLink.target = '_blank'; // Open in a new tab
     editLink.title = 'Click to edit this dance step.'; // Tooltip text that will appear on hover
-    info.appendChild(editLink);// info.innerHTML
 
     // Append the edit button to the container or info element
     info.appendChild(editLink);
 
+    // EDIT SHOP
+    // If the HTML page is 'collab.html', add an 'edit_shop' link
+    if (window.location.pathname.includes('collab.html')) {
+      const shopLinkContainer = document.createElement('span');
+
+      info.appendChild(document.createTextNode('  |  ')); // Add space
+
+      const editShopLink = document.createElement('a');
+      editShopLink.textContent = 'edit shop'; // Set link text
+      editShopLink.title = 'Click to edit this shop link.'; // Tooltip text that will appear on hover
+      editShopLink.className = 'edit-shop-link'; // Add a class for styling
+
+      // Create the tooltip container
+      const tooltipContainer = document.createElement('div');
+      tooltipContainer.className = 'tooltip';
+
+      // Create the input field
+      const inputField = document.createElement('input');
+      inputField.type = 'text';
+      inputField.placeholder = 'Paste shop link...';
+
+      // Append the input field to the tooltip container
+      tooltipContainer.appendChild(inputField);
+
+      // Append the tooltip container to the shop link container
+      shopLinkContainer.appendChild(tooltipContainer);
+
+      // Append the "edit_shop" link to the shop link container
+      shopLinkContainer.appendChild(editShopLink);
+
+      // Append the shop link container to the info
+      info.appendChild(shopLinkContainer);
+
+      // Add event listener for the "edit_shop" link
+      editShopLink.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default behavior of the link
+
+        // Get the input field value (shop link)
+        const shopLink = inputField.value.trim();
+        debugger
+        // Check if the shop link is not empty
+        if (shopLink !== '') {
+          // Get the step name from the stepNameElement
+          const stepName = stepNameElement.textContent.trim();
+
+          // Call the setData function to update the spreadsheet
+          setData(apiUrl, stepName, shopLink)
+            .then(() => {
+              // Clear the input field after successful update
+              inputField.value = '';
+              // Optionally, provide feedback to the user (e.g., show a success message)
+              alert('Shop link updated successfully!');
+            })
+            .catch(error => {
+              // Handle errors (e.g., display an error message)
+              console.error('Error updating shop link:', error);
+              alert('An error occurred while updating the shop link. Please try again later.');
+            });
+        } else {
+          // If the shop link is empty, alert the user
+          alert('Please paste a shop link in the input field.');
+        }
+      });
+    }
+
+
+
     container.appendChild(info);
 
 
-    
+
     // Append the container to the gallery
     gallery.appendChild(container);
 
-    
+
     // GALLERY AD Check if it's the 4th item and not the last item, then insert the ad
     if ((index + 1) % 4 === 0 && (index + 1) !== filteredData.length) {
       const adContainer = document.createElement('div');
@@ -490,10 +444,40 @@ function updateGallery(filteredData) {
       adContainer.innerHTML = adCode;
       gallery.appendChild(adContainer);
     }
-    
+
   };
 }
 
+function appendLinks(info, linksString, displayName) {
+  const links = linksString.split(';').filter(url => url.trim());
+
+  if (links.length === 1) {
+    const link = document.createElement('a');
+    link.href = links[0].trim();
+    link.textContent = displayName;
+    link.target = '_blank';
+    info.appendChild(link);
+    info.appendChild(document.createTextNode('  |  '));
+
+  } else {
+    const textNode = document.createTextNode(displayName + ' ');
+    info.appendChild(textNode);
+
+    links.forEach((url, index) => {
+      const link = document.createElement('a');
+      link.href = url.trim();
+      link.textContent = index + 1;
+      link.target = '_blank';
+      info.appendChild(link);
+
+      if (index < links.length - 1) {
+        info.appendChild(document.createTextNode(', '));
+      } else {
+        info.appendChild(document.createTextNode('  |  '));
+      }
+    });
+  }
+}
 
 //Step	Style	Country	Gif Url	Gif Src	Videos	Tutorial	Creator	Creator Url	Year	Song	Shop	Comments
 // https://docs.google.com/forms/d/e/1FAIpQLSfK6ZAifSgM2K6HGxDn1Nt9pHCkz4N8IT5uufGm3yQKEeP7wA/
@@ -522,25 +506,25 @@ function generatePreFilledFormUrl(item) {
   const gifSourceEntry = "&entry.1809988814=" + encodeURIComponent(item.gifUrl);
   let concatFields = basePreFilledLink + stepNameEntry + styleEntry + countryEntry + gifurlEntry + gifSourceEntry
 
-  if (item.videos){
+  if (item.videos) {
     const thisEntry = "&entry.257844052=" + encodeURIComponent(item.videos);
-    concatFields = concatFields+thisEntry
+    concatFields = concatFields + thisEntry
   }
-  if (item.creator){
+  if (item.creator) {
     const thisEntry = "&entry.1908612392=" + encodeURIComponent(item.creator);
-    concatFields = concatFields+thisEntry
+    concatFields = concatFields + thisEntry
   }
-  if (item.creatorLink){
+  if (item.creatorLink) {
     const thisEntry = "&entry.950651488=" + encodeURIComponent(item.creatorLink);
-    concatFields = concatFields+thisEntry
+    concatFields = concatFields + thisEntry
   }
-  if (item.year){
+  if (item.year) {
     const thisEntry = "&entry.1499389267=" + encodeURIComponent(item.year);
-    concatFields = concatFields+thisEntry
+    concatFields = concatFields + thisEntry
   }
-  if (item.song){
+  if (item.song) {
     const thisEntry = "&entry.820569580=" + encodeURIComponent(item.song);
-    concatFields = concatFields+thisEntry
+    concatFields = concatFields + thisEntry
   }
 
   return concatFields; // Concatenate all fields
@@ -553,25 +537,25 @@ function generatePreFilledFormUrl(item) {
 function getFlagEmoji(countryName) {
   // Simple mapping of country names to emojis
   const flags = {
-      'USA': '🇺🇸',
-      'Angola': '🇦🇴',
-      'South Africa': '🇿🇦',
-      'Angola/South Africa': '🇦🇴🇿🇦',
-      'Ghana': '🇬🇭',
-      'Nigeria': '🇳🇬',
-      'Gabon': '🇬🇦',
-      'Congo': '🇨🇬🇨🇩',
-      'Rwanda': '🇷🇼',
-      'Jamaica': '🇯🇲',
-      'Ivory Coast': '🇨🇮',
-      'Uganda': '🇺🇬',
-      'Ethiopia': '🇪🇹',
-      'Kenya': '🇰🇪',
-      'Cameroun': '🇨🇲',
-      'Senegal': '🇸🇳',
-      'Togo':'🇹🇬',
+    'USA': '🇺🇸',
+    'Angola': '🇦🇴',
+    'South Africa': '🇿🇦',
+    'Angola/South Africa': '🇦🇴🇿🇦',
+    'Ghana': '🇬🇭',
+    'Nigeria': '🇳🇬',
+    'Gabon': '🇬🇦',
+    'Congo': '🇨🇬🇨🇩',
+    'Rwanda': '🇷🇼',
+    'Jamaica': '🇯🇲',
+    'Ivory Coast': '🇨🇮',
+    'Uganda': '🇺🇬',
+    'Ethiopia': '🇪🇹',
+    'Kenya': '🇰🇪',
+    'Cameroun': '🇨🇲',
+    'Senegal': '🇸🇳',
+    'Togo': '🇹🇬',
 
-      // Add more countries as needed
+    // Add more countries as needed
   };
   return flags[countryName] || ''; // Return the emoji or an empty string if not found
 }
@@ -581,7 +565,7 @@ function getFlagEmoji(countryName) {
 
 
 
-function getData(){
+function getData() {
   return fetch(apiUrl)
     .then(response => {
       if (!response.ok) {
@@ -590,6 +574,33 @@ function getData(){
       return response.json();
     })
     .catch(error => console.error('Error K:', error));
+}
+
+function setData(apiUrl, stepName, values) {
+  return fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      step: stepName,
+      values: values
+    })
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to set data.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Data set successfully:', data);
+      return data;
+    })
+    .catch(error => {
+      console.error('Error setting data:', error);
+      throw error;
+    });
 }
 
 
@@ -602,10 +613,10 @@ function transformGoogleDriveURL(url) {
   const match = url.match(/id=([a-zA-Z0-9_-]+)/) || url.match(/file\/d\/([a-zA-Z0-9_-]+)/);
 
   if (match && match[1]) {
-      url = baseUrl + match[1];
+    url = baseUrl + match[1];
   } else {
-      // Return original URL if no ID is found or the format is incorrect
-      return url;
+    // Return original URL if no ID is found or the format is incorrect
+    return url;
   }
   return url;
 }
@@ -629,7 +640,7 @@ function transformGoogleDriveURL(url) {
 // Function to call applyFilters when Enter key is pressed
 function handleKeyPress(event) {
   if (event.key === 'Enter') {
-      applyFilters();
+    applyFilters();
   }
 }
 
@@ -661,30 +672,30 @@ async function initFilters() {
       break;
     }
   }
-  
+
   applyFilters(data);
 
 
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
-    insertNavbarAndFilters();
+  insertNavbarAndFilters();
 
-    document.querySelector('.nav-links').addEventListener('click', function() {
-      var dropdown = document.querySelector('.dropdown-content');
-      if (dropdown.style.display === "block") {
-          dropdown.style.display = "none";
-      } else {
-          dropdown.style.display = "block";
-      }
-    });
-
-
-    var includeFilters = window.includeFilters; // Default to false if undefined
-    if (includeFilters){
-    initFilters(); 
+  document.querySelector('.nav-links').addEventListener('click', function () {
+    var dropdown = document.querySelector('.dropdown-content');
+    if (dropdown.style.display === "block") {
+      dropdown.style.display = "none";
+    } else {
+      dropdown.style.display = "block";
     }
+  });
+
+
+  var includeFilters = window.includeFilters; // Default to false if undefined
+  if (includeFilters) {
+    initFilters();
+  }
 });
 
 
