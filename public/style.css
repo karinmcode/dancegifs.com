@@ -398,3 +398,21 @@ body {
     fill: #fff;
     background-color: rgb(55, 0, 71);
 }
+
+.footer-social-links {
+    list-style: none;
+}
+
+.footer-social-links li {
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+}
+
+.footer-social-links li a{
+    display: inline-block;
+}
+
+.footer-social-links li span {
+    padding: 0 10px;
+}
