@@ -1,5 +1,5 @@
 // VARIABLES
-const apiUrl = 'https://script.google.com/macros/s/AKfycbx0P1RNkdAQGgfBWJRRgtQM4ntv79d7wY93t2dD0RcDPLIhHWuKWxZWmDZYdhmOCqet/exec';
+const apiUrl = 'https://script.google.com/macros/s/AKfycbwyOJKYNXjwdkVW4gwlOKdC4S-ow9vMR0qfcTnGrcbluZyrxEk1EMFB8TFKlzpZt9Lz/exec';
 const adCodeGallery = `
 <!-- Google AdSense Gallery Ad -->
 <div class="ad-container">
@@ -577,7 +577,7 @@ function getData() {
 }
 
 function setData(apiUrl, stepName, values) {
-  return fetch(apiUrl, {
+  RESPONSE = fetch(apiUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -586,7 +586,9 @@ function setData(apiUrl, stepName, values) {
       step: stepName,
       values: values
     })
-  })
+  });
+  debugger
+  return RESPONSE
     .then(response => {
       if (!response.ok) {
         throw new Error('Failed to set data.');
