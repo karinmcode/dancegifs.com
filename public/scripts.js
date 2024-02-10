@@ -1,5 +1,5 @@
 // VARIABLES
-const apiUrl = 'https://script.google.com/macros/s/AKfycbwyOJKYNXjwdkVW4gwlOKdC4S-ow9vMR0qfcTnGrcbluZyrxEk1EMFB8TFKlzpZt9Lz/exec';
+const apiUrl = 'https://script.google.com/macros/s/AKfycbwjeNYxwyzR8CT75MdQoMq5W839CzvnJqIgfFo94Dy1DH3mMZfXG74pi31t1gRWtc03/exec';
 const adCodeGallery = `
 <!-- Google AdSense Gallery Ad -->
 <div class="ad-container">
@@ -582,12 +582,11 @@ function setData(apiUrl, stepName, values) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
+      body: JSON.stringify({
       step: stepName,
       values: values
     })
   });
-  debugger
   return RESPONSE
     .then(response => {
       if (!response.ok) {
