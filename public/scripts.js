@@ -660,13 +660,28 @@ async function initFilters() {
   document.getElementById('country').addEventListener('keypress', handleKeyPress);
   document.getElementById('creator').addEventListener('keypress', handleKeyPress);
 
+  // Filter data to include only rows with a GIF URL
+  const dataWithGifs = data.filter(item => item.gifUrl && item.gifUrl.trim() !== '');
+
+  // Proceed only if there are rows with GIFs
+  if (dataWithGifs.length > 0) {
+    // Select a random row from the data with GIFs
+    const randomIndex = Math.floor(Math.random() * dataWithGifs.length);
+    const randomDataWithGif = [dataWithGifs[randomIndex]]; // Create an array with the randomly selected data row
+    
+    // Update the gallery with the randomly selected data row that includes a GIF
+    updateGallery(randomDataWithGif);
+  }
+
+
   // Set the default style you want to select
-  const defaultStyle = 'Amapiano';
+  //const defaultStyle = 'Amapiano';
 
   // Get the style dropdown element
-  const styleSelect = document.getElementById('style');
+  //const styleSelect = document.getElementById('style');
 
   // Loop through the options to find the index of the default style
+  /*
   for (let i = 0; i < styleSelect.options.length; i++) {
     if (styleSelect.options[i].textContent === defaultStyle) {
       styleSelect.selectedIndex = i; // Set the selected index to the default style
@@ -675,6 +690,7 @@ async function initFilters() {
   }
 
   applyFilters(data);
+  */
 
 
 }
