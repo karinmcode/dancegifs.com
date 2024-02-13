@@ -143,14 +143,19 @@ body {
 .filter-inputs {
     display: flex;
     flex-direction: row;
+    flex-flow: row wrap;
+
   }
 
 .filter-input label {
     font-weight: bold;
+    margin: 5px 10px 5px 0;
+
 }
 
 .filter-input input {
     padding-right: 20px;
+	border-radius:25px;
 }
 
 /* Style input fields and selects */
@@ -178,7 +183,7 @@ body {
     border: none;
     padding: 5px 10px;
     font-size: 14px;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }

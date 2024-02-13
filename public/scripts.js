@@ -87,8 +87,8 @@ function insertNavbarAndFilters() {
                 </select>
             </div>
             <div class="filter-buttons">
-                <button onclick="applyFilters()">Apply Filters</button>
-                <button onclick="resetFilters()">Reset Filters</button>
+                <button onclick="applyFilters()">Let's Go!</button>
+                <button onclick="resetFilters()">From the top!</button>
             </div>
         </div>`;
 
@@ -336,6 +336,12 @@ function updateGallery(filteredData) {
     if (item.creator) {
       appendLinks(info, item.creatorUrl, 'by ' + item.creator);
     }
+
+    // Check if creator value is not empty
+    if (item.dancer) {
+      appendLinks(info, item.dancerUrl, 'dancer: ' + item.dancer);
+    }
+
 
     // Check if videos value is not empty
     if (item.videos) {
