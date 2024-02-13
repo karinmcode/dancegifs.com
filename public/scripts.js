@@ -1,5 +1,5 @@
 // VARIABLES
-const apiUrl = 'https://script.google.com/macros/s/AKfycbwjeNYxwyzR8CT75MdQoMq5W839CzvnJqIgfFo94Dy1DH3mMZfXG74pi31t1gRWtc03/exec';
+const apiUrl = 'https://script.google.com/macros/s/AKfycbyfTaLVBqHNKLxopi32Wn6G3zonGc_bsjQykNkFIt8vesWCJcGuNrXeMZ426l14srxb/exec';
 const adCodeGallery = `
 <!-- Google AdSense Gallery Ad -->
 <div class="ad-container">
