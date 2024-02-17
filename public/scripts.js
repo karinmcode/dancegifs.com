@@ -372,6 +372,7 @@ function updateGallery(filteredData) {
       info.appendChild(document.createTextNode('  |  ')); // Add space
 
       const editShopLink = document.createElement('a');
+      editShopLink.href = "#"; // It's good practice to set the href attribute for anchor tags
       editShopLink.textContent = 'edit shop'; // Set link text
       editShopLink.title = 'Click to edit this shop link.'; // Tooltip text that will appear on hover
       editShopLink.className = 'edit-shop-link'; // Add a class for styling
@@ -384,6 +385,7 @@ function updateGallery(filteredData) {
       const inputField = document.createElement('input');
       inputField.type = 'text';
       inputField.placeholder = 'Paste shop link...';
+      inputField.className = 'shop-link-input'; // Add a class for the input
 
       // Append the input field to the tooltip container
       tooltipContainer.appendChild(inputField);
@@ -399,35 +401,43 @@ function updateGallery(filteredData) {
 
       // Add event listener for the "edit_shop" link
       editShopLink.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent the default behavior of the link
+        event.preventDefault(); // Prevent default action of the anchor tag
 
         // Get the input field value (shop link)
         const shopLink = inputField.value.trim();
-        
-        // Check if the shop link is not empty
-        if (shopLink !== '') {
-          // Get the step name from the stepNameElement
-          const stepName = stepNameElement.textContent.trim();
 
-          // Call the setData function to update the spreadsheet
-          setData(apiUrl, stepName, shopLink)
-            .then(() => {
-              // Clear the input field after successful update
-              inputField.value = '';
-              // Optionally, provide feedback to the user (e.g., show a success message)
-              alert('Shop link updated successfully!');
-            })
-            .catch(error => {
-              // Handle errors (e.g., display an error message)
-              console.error('Error updating shop link:', error);
-              alert('An error occurred while updating the shop link. Please try again later.');
-            });
-        } else {
-          // If the shop link is empty, alert the user
-          alert('Please paste a shop link in the input field.');
+        // Validate shopLink if necessary
+        if (!shopLink) {
+          alert('Please enter a valid shop link.');
+          return;
         }
+
+        // Send HTTP request to server
+        fetch('/update-shop', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ shopLink: shopLink, stepName: item.step  })
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to update shop link.');
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Handle success, e.g., show a success message to the user
+          alert('Shop link updated successfully!');
+        })
+        .catch(error => {
+          // Handle error, e.g., show an error message to the user
+          console.error('Error updating shop link:', error);
+          alert('An error occurred while updating the shop link. Please try again later.');
+        });
       });
     }
+
 
 
 
@@ -453,6 +463,7 @@ function updateGallery(filteredData) {
 
   };
 }
+
 
 function appendLinks(info, linksString, displayName) {
   const links = linksString.split(';').filter(url => url.trim());
